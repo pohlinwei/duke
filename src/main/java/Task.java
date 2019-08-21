@@ -9,12 +9,4 @@ public class Task {
     public void done() {
         done = true;
     }
-
-    public String toString() {
-        if (done) {
-            return String.format("[\u2714] %s", taskName);
-        } else {
-            return String.format("[\u2718] %s", taskName);
-        }
-    }
 }
