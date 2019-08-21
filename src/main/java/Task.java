@@ -9,4 +9,8 @@ public class Task {
     public void done() {
         done = true;
     }
+
+    public boolean isDone() {
+        return done;
+    }
 }
