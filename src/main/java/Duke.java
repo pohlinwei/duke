@@ -9,9 +9,10 @@ public class Duke {
     private static String line = "    ____________________________________________________________\n";
     private static String prependSpace = "     ";
 
-    // greetings
+    // default statements by duke
     private static String hi = "Hello! I'm Duke\nWhat can I do for you?";
     private static String farewell = "Bye. Hope to see you again soon!";
+    private static String listIntro = "Here are the tasks in your list:";
 
     public static void main(String[] args) {
 
@@ -19,22 +20,32 @@ public class Duke {
         System.out.print(formatOutput(hi));
 
         String input = "";
-        List<String> tasks = new ArrayList<>();
+        List<Task> tasks = new ArrayList<>();
         // get first user input
         input = sc.nextLine();
 
         while (!input.equals("bye")) {
-            if (input.equals("list")) {
+            String[] parsedInput = input.split(" ");
+            String command = parsedInput[0];
+
+            if (command.equals("list")) {
                 // print all tasks
                 String listedTask = IntStream.range(0, tasks.size())
                         .mapToObj(i -> String.format("%d. %s\n", (i + 1), tasks.get(i)))
                         .reduce("", (prev, curr) -> prev + curr);
-                System.out.print(formatOutput(listedTask));
-
+                System.out.print(formatOutput(listIntro + "\n" + listedTask));
+            } else if (command.equals("done")) {
+                int taskNum = Integer.parseInt(parsedInput[1]) - 1;
+                // mark task as complete
+                Task currentTask = tasks.get(taskNum);
+                currentTask.done();
+                // update user
+                System.out.print(formatOutput(String.format("Nice! I've marked this task as done:\n  %s\n",
+                        tasks.get(taskNum))));
             } else {
                 System.out.print(formatOutput("added: " + input));
                 // add new task
-                tasks.add(input);
+                tasks.add(new Task(input));
             }
             // get new input
             input = sc.nextLine();
