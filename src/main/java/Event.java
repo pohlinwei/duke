@@ -3,6 +3,7 @@ public class Event extends Task {
         super(taskName);
     }
 
+    @Override
     public String toString() {
         String[] parsedName = taskName.split(" /");
         String name = parsedName[0];

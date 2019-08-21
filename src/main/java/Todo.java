@@ -3,6 +3,7 @@ public class Todo extends Task {
         super(taskName);
     }
 
+    @Override
     public String toString() {
         if (done) {
             return String.format("[T][\u2714] %s", taskName);

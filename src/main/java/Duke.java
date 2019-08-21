@@ -28,47 +28,72 @@ public class Duke {
             String[] parsedInput = input.split(" ");
             String command = parsedInput[0];
 
-            if (command.equals("list")) {
-                // print all tasks
-                String listedTask = IntStream.range(0, tasks.size())
-                        .mapToObj(i -> String.format("%d. %s\n", (i + 1), tasks.get(i)))
-                        .reduce("", (prev, curr) -> prev + curr);
-                System.out.print(formatOutput(listIntro + "\n" + listedTask));
-            } else if (command.equals("done")) {
-                int taskNum = Integer.parseInt(parsedInput[1]) - 1;
-                // mark task as complete
-                Task currentTask = tasks.get(taskNum);
-                currentTask.done();
-                // update user
-                System.out.print(formatOutput(String.format("Nice! I've marked this task as done:\n  %s\n",
-                        tasks.get(taskNum))));
-            } else {
-                // if new tasks needs to be added
-                // get task name
-                String taskName = "";
-                for (int i = 1; i < parsedInput.length; i++) {
-                    taskName += (" " + parsedInput[i]);
-                }
-                taskName = taskName.trim();
-
-                switch(command) {
-                    case "todo":
-                        tasks.add(new Todo(taskName));
-                        break;
-                    case "deadline":
-                        tasks.add(new Deadline(taskName));
-                        break;
-                    case "event":
-                        tasks.add(new Event(taskName));
-                        break;
-                }
-
-                String response = String.format("Got it. I've added this task:\n  %s\nNow you have %d tasks in the list.\n",
-                        tasks.get(tasks.size() - 1), tasks.size());
-                System.out.print(formatOutput(response));
+            // get task details, if any
+            String taskName = "";
+            for (int i = 1; i < parsedInput.length; i++) {
+                taskName += (" " + parsedInput[i]);
             }
-            // get new input
-            input = sc.nextLine();
+            taskName = taskName.trim();
+
+            try {
+                if (command.equals("list")) {
+                    // print all tasks
+                    String listedTask = IntStream.range(0, tasks.size())
+                            .mapToObj(i -> String.format("%d. %s\n", (i + 1), tasks.get(i)))
+                            .reduce("", (prev, curr) -> prev + curr);
+                    System.out.print(formatOutput(listIntro + "\n" + listedTask));
+                } else if (command.equals("done")) {
+                    int taskNum = Integer.parseInt(parsedInput[1]) - 1;
+                    Task currentTask = tasks.get(taskNum);
+                    if (currentTask.isDone()) {
+                        throw new MultipleChecksException(taskNum + 1);
+                    }
+                    currentTask.done();
+                    // update user
+                    System.out.print(formatOutput(String.format("Nice! I've marked this task as done:\n  %s\n",
+                            tasks.get(taskNum))));
+                } else if (command.equals("todo") || command.equals("deadline") || command.equals("event")) {
+                    // if new tasks needs to be added
+                    if (taskName.equals("")) {
+                        throw new EmptyDescriptionException(command);
+                    }
+
+                    switch(command) {
+                        case "todo":
+                            tasks.add(new Todo(taskName));
+                            break;
+                        case "deadline":
+                            if (!taskName.contains(" /")) {
+                                throw new InvalidTimeException();
+                            }
+                            tasks.add(new Deadline(taskName));
+                            break;
+                        case "event":
+                            if (!taskName.contains(" /")) {
+                                throw new InvalidTimeException();
+                            }
+                            tasks.add(new Event(taskName));
+                            break;
+                    }
+
+                    String response = String.format("Got it. I've added this task:\n  %s\nNow you have %d tasks in the list.\n",
+                            tasks.get(tasks.size() - 1), tasks.size());
+                    System.out.print(formatOutput(response));
+                } else {
+                    throw new InvalidCommandException();
+                }
+            } catch(MultipleChecksException e) {
+                System.err.print(formatOutput(e.getMessage()));
+            } catch (InvalidCommandException e) {
+                System.err.print(formatOutput(e.getMessage()));
+            } catch (EmptyDescriptionException e) {
+                System.err.print(formatOutput(e.getMessage()));
+            } catch (InvalidTimeException e) {
+                System.err.print(formatOutput(e.getMessage()));
+            } finally {
+                // get next user input
+                input = sc.nextLine();
+            }
         }
 
         // bid farewell
