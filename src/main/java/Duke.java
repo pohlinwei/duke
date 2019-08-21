@@ -52,6 +52,14 @@ public class Duke {
                     // update user
                     System.out.print(formatOutput(String.format("Nice! I've marked this task as done:\n  %s\n",
                             tasks.get(taskNum))));
+                } else if (command.equals("delete")) {
+                    int taskNum = Integer.parseInt(parsedInput[1]) - 1;
+                    Task deletedTask = tasks.get(taskNum);
+                    tasks.remove(taskNum);
+                    // update user
+                    String response = String.format("Noted. I've removed this task:\n  %s\nNow you have %d tasks in the list.",
+                                                    deletedTask, tasks.size());
+                    System.out.print(formatOutput(response));
                 } else if (command.equals("todo") || command.equals("deadline") || command.equals("event")) {
                     // if new tasks needs to be added
                     if (taskName.equals("")) {
