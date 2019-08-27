@@ -1,10 +1,15 @@
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Duke {
+    private static String entries = "../data/entries.txt";
+
     // for formatting purposes
     private static String line = "    ____________________________________________________________\n";
     private static String prependSpace = "     ";
@@ -15,12 +20,20 @@ public class Duke {
     private static String listIntro = "Here are the tasks in your list:";
 
     public static void main(String[] args) {
-
         Scanner sc = new Scanner(System.in);
         System.out.print(formatOutput(hi));
 
         String input = "";
         List<Task> tasks = new ArrayList<>();
+        Storage storage;
+        try {
+            storage = new Storage(entries);
+            tasks.addAll(toTaskList(storage.load()));
+        } catch (IOException e) {
+            System.err.print(formatOutput("Unable to load txt file: " + e.getMessage()));
+            return;
+        }
+
         // get first user input
         input = sc.nextLine();
 
@@ -49,6 +62,8 @@ public class Duke {
                         throw new MultipleChecksException(taskNum + 1);
                     }
                     currentTask.done();
+                    // update storage
+                    storage.update(tasks);
                     // update user
                     System.out.print(formatOutput(String.format("Nice! I've marked this task as done:\n  %s\n",
                             tasks.get(taskNum))));
@@ -56,9 +71,11 @@ public class Duke {
                     int taskNum = Integer.parseInt(parsedInput[1]) - 1;
                     Task deletedTask = tasks.get(taskNum);
                     tasks.remove(taskNum);
+                    // update storage to remove first similar task
+                    storage.update(tasks);
                     // update user
                     String response = String.format("Noted. I've removed this task:\n  %s\nNow you have %d tasks in the list.",
-                                                    deletedTask, tasks.size());
+                            deletedTask, tasks.size());
                     System.out.print(formatOutput(response));
                 } else if (command.equals("todo") || command.equals("deadline") || command.equals("event")) {
                     // if new tasks needs to be added
@@ -66,37 +83,42 @@ public class Duke {
                         throw new EmptyDescriptionException(command);
                     }
 
-                    switch(command) {
-                        case "todo":
-                            tasks.add(new Todo(taskName));
-                            break;
-                        case "deadline":
-                            if (!taskName.contains(" /")) {
-                                throw new InvalidTimeException();
-                            }
-                            tasks.add(new Deadline(taskName));
-                            break;
-                        case "event":
-                            if (!taskName.contains(" /")) {
-                                throw new InvalidTimeException();
-                            }
-                            tasks.add(new Event(taskName));
-                            break;
+                    switch (command) {
+                    case "todo":
+                        tasks.add(new Todo(taskName));
+                        break;
+                    case "deadline":
+                        if (!taskName.contains(" /")) {
+                            throw new InvalidTimeException();
+                        }
+                        tasks.add(new Deadline(taskName));
+                        break;
+                    case "event":
+                        if (!taskName.contains(" /")) {
+                            throw new InvalidTimeException();
+                        }
+                        tasks.add(new Event(taskName));
+                        break;
                     }
 
-                    String response = String.format("Got it. I've added this task:\n  %s\nNow you have %d tasks in the list.\n",
+                    // add new task to storage
+                    storage.addTask(tasks.get(tasks.size() - 1));
+                    String response = String.format("Got it. I've added this task:\n  %s\n" +
+                                    "Now you have %d tasks in the list.\n",
                             tasks.get(tasks.size() - 1), tasks.size());
                     System.out.print(formatOutput(response));
                 } else {
                     throw new InvalidCommandException();
                 }
-            } catch(MultipleChecksException e) {
+            } catch (MultipleChecksException e) {
                 System.err.print(formatOutput(e.getMessage()));
             } catch (InvalidCommandException e) {
                 System.err.print(formatOutput(e.getMessage()));
             } catch (EmptyDescriptionException e) {
                 System.err.print(formatOutput(e.getMessage()));
             } catch (InvalidTimeException e) {
+                System.err.print(formatOutput(e.getMessage()));
+            } catch (IOException e) {
                 System.err.print(formatOutput(e.getMessage()));
             } finally {
                 // get next user input
@@ -115,5 +137,36 @@ public class Duke {
                 .reduce("", (prev, curr) -> prev + prependSpace + curr + "\n");
         accum += line;
         return accum;
+    }
+
+    private static List<Task> toTaskList(Stream<String> allTasks) {
+        return allTasks.map(taskInfo -> toTask(taskInfo))
+                .collect(Collectors.toList());
+    }
+
+    private static Task toTask(String taskInfo) {
+        String[] parsedInfo = taskInfo.split(" \\| ");
+        String type = parsedInfo[0];
+        boolean done = Integer.parseInt(parsedInfo[1]) == 1;
+        String name = parsedInfo[2];
+        Task task;
+        String time;
+        switch (type) {
+        case "T":
+            task = new Todo(name);
+            break;
+        case "D":
+            time = parsedInfo[3];
+            task = new Deadline(name + " /by: " + time);
+            break;
+        default:
+            time = parsedInfo[3];
+            task = new Event(name + " /at: " + time);
+            break;
+        }
+        if (done) {
+            task.done();
+        }
+        return task;
     }
 }
