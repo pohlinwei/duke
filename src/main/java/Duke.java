@@ -3,6 +3,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.stream.IntStream;
+import java.text.ParseException;
 
 public class Duke {
     // for formatting purposes
@@ -97,6 +98,8 @@ public class Duke {
             } catch (EmptyDescriptionException e) {
                 System.err.print(formatOutput(e.getMessage()));
             } catch (InvalidTimeException e) {
+                System.err.print(formatOutput(e.getMessage()));
+            } catch (ParseException e) {
                 System.err.print(formatOutput(e.getMessage()));
             } finally {
                 // get next user input
