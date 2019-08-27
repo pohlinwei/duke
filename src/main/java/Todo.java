@@ -3,6 +3,10 @@ public class Todo extends Task {
         super(taskName);
     }
 
+    public String getInfo() {
+        return String.format("T | %d | %s", done ? 1 : 0, taskName);
+    }
+
     @Override
     public String toString() {
         if (done) {
