@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
+import java.text.ParseException;
+
 
 public class Duke {
     private static String entries = "../data/entries.txt";
@@ -120,6 +122,8 @@ public class Duke {
                 System.err.print(formatOutput(e.getMessage()));
             } catch (IOException e) {
                 System.err.print(formatOutput(e.getMessage()));
+            } catch (ParseException e) {
+                System.err.print(formatOutput(e.getMessage()));
             } finally {
                 // get next user input
                 input = sc.nextLine();
@@ -157,11 +161,11 @@ public class Duke {
             break;
         case "D":
             time = parsedInfo[3];
-            task = new Deadline(name + " /by: " + time);
+            task = new Deadline(name + " /by: " + time, true);
             break;
         default:
             time = parsedInfo[3];
-            task = new Event(name + " /at: " + time);
+            task = new Event(name + " /at: " + time, true);
             break;
         }
         if (done) {
