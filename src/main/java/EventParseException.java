@@ -2,7 +2,7 @@ import java.text.ParseException;
 
 public class EventParseException extends ParseException {
     public EventParseException(String str) {
-        super(str, 0);
+        super(str, 0 );
     }
 
     @Override
