@@ -1,6 +1,5 @@
 import java.util.Arrays;
 
-
 public class Ui {
     // for formatting purposes
     private static String line = "    ____________________________________________________________\n";

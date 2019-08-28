@@ -26,4 +26,14 @@ public class Deadline extends Task {
         return String.format("[D][%s] %s (by: %s)", done ? SYMBOL_COMPLETE : SYMBOL_INCOMPLETE,
                 taskName, dateBeautifier.format(dateTime.getTime()));
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Deadline) {
+            return this.taskName == ((Deadline) o).taskName
+                    && this.details == ((Deadline) o).details;
+        } else {
+            return false;
+        }
+    }
 }

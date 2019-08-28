@@ -15,4 +15,13 @@ public class Todo extends Task {
     public String toString() {
         return String.format("[T][%s] %s", done ? SYMBOL_COMPLETE : SYMBOL_INCOMPLETE, taskName);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Todo) {
+            return this.taskName == (((Event) o).taskName);
+        } else {
+            return false;
+        }
+    }
 }
