@@ -15,6 +15,6 @@ class EmptyDescriptionException extends Exception {
 
     @Override
     public String getMessage() {
-        return String.format("\u2639  OOPS!!! The description of %s cannot be empty.", type);
+        return String.format("The description of %s cannot be empty.", type);
     }
 }

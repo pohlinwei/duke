@@ -8,6 +8,6 @@ class MultipleChecksException extends Exception {
 
     @Override
     public String getMessage() {
-        return String.format("\u2639  OOPS!!! You have completed task %d earlier!", taskNum);
+        return String.format("You have completed task %d earlier!", taskNum);
     }
 }

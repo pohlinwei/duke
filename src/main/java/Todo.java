@@ -7,12 +7,12 @@ public class Todo extends Task {
         return String.format("T | %d | %s", done ? 1 : 0, taskName);
     }
 
+    static Task stringToTask(String name) {
+        return new Todo(name);
+    }
+
     @Override
     public String toString() {
-        if (done) {
-            return String.format("[T][\u2714] %s", taskName);
-        } else {
-            return String.format("[T][\u2718] %s", taskName);
-        }
+        return String.format("[T][%s] %s", done ? SYMBOL_COMPLETE : SYMBOL_INCOMPLETE, taskName);
     }
 }

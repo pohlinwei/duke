@@ -8,7 +8,7 @@ public class DeadlineParseException extends ParseException {
     @Override
     public String getMessage() {
         return String.format(super.getMessage() + "\n" +
-                "Please input time and date info for deadline in the following format:\n" +
-                "d/m hhmm where hh:mm is in 24h format (e.g. 20/1 1800)");
+                "Please input deadline info in the following format:\n" +
+                "\tdeadline essay /by 20/1 1800");
     }
 }
