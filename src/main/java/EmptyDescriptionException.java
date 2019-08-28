@@ -1,3 +1,4 @@
+
 class EmptyDescriptionException extends Exception {
     private String type;
 

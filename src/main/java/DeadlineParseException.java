@@ -1,5 +1,8 @@
 import java.text.ParseException;
 
+/**
+ * This indicates that an error was encountered when trying to parse user's deadline input.
+ */
 public class DeadlineParseException extends ParseException {
     public DeadlineParseException(String str) {
         super(str, 0);
