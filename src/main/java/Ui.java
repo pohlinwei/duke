@@ -9,6 +9,7 @@ public class Ui {
     private static String hi = "Hello! I'm Duke\nWhat can I do for you?";
     private static String bye = "Bye. Hope to see you again soon!";
     private static String listIntro = "Here are the tasks in your list:";
+    private static String searchResultsIntro = "Here are the matching tasks in your list:";
 
     public static void sayHi() {
         System.out.print(formatOutput(hi));
@@ -44,6 +45,10 @@ public class Ui {
         System.err.print(formatOutput("\u2639  OOPS!!! " + e.getMessage()));
     }
 
+    public static void showSearchResults(String tasksAsString) {
+        System.out.print(formatOutput(searchResultsIntro + "\n" + tasksAsString));
+    }
+
     private static String formatOutput(String str) {
         String accum = line;
         String[] allLines = str.split("\n");
@@ -52,4 +57,6 @@ public class Ui {
         accum += line;
         return accum;
     }
+
+
 }
