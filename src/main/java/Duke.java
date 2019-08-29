@@ -1,6 +1,15 @@
 import java.util.Optional;
 import java.util.Scanner;
 
+import task.TaskList;
+
+import command.Command;
+import command.ExitCommand;
+
+import util.Storage;
+import util.Ui;
+import util.Parser;
+
 public class Duke {
     private static String entries = "../data/entries.txt";
 
