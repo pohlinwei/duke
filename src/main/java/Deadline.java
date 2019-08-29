@@ -2,7 +2,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 /**
- * This class represents tasks with deadlines. User has to indicate the task and the deadline.
+ * This class represents tasks that need to be done before a specific date/time.
  */
 public class Deadline extends Task {
     private static SimpleDateFormat dateBeautifier = new SimpleDateFormat("dd/MM/yy h:mma");
@@ -12,6 +12,7 @@ public class Deadline extends Task {
 
     /**
      * Returns a task with a deadline field.
+     *
      * @param taskName name of task
      * @param details latest completion date and time
      * @param dateTime formatted version of <code>details</code>
@@ -24,6 +25,7 @@ public class Deadline extends Task {
 
     /**
      * Summarises the details and status of <code>this</code> task so that it can be stored.
+     *
      * @return a summarised version of <code>this</code> task
      */
     public String getInfo() {
@@ -31,7 +33,9 @@ public class Deadline extends Task {
     }
 
     /**
-     * Returns an instance of <code>Deadline</code> when given a string representation of it.
+     * Returns an instance of <code>Task</code> representing a <code>Deadline</code>
+     * when given a string representation of it.
+     *
      * @param name name of task
      * @param timeInfo latest completion date and time
      * @return <code>Task</code> representing the given input
@@ -41,8 +45,9 @@ public class Deadline extends Task {
     }
 
     /**
-     * Returns a string detailing whether the task is done and the task's details.
-     * @return formatted string of <code>this</code> task's status and details
+     * Returns a formatted string version of <code>this</code>.
+     *
+     * @return formatted string version of <code>this</code>
      */
     @Override
     public String toString() {
@@ -53,6 +58,7 @@ public class Deadline extends Task {
     /**
      * Checks whether <code>Object o</code> has the same <code>taskName</code> and <code>details</code> as
      * <code>this</code>.
+     *
      * @param o <code>Object</code> to be compared with <code>this</code>
      * @return boolean indicating whether the two objects are 'equal'
      */

@@ -3,6 +3,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * An <code>abstract</code> class representing a task which has name and status (whether it is done) fields.
+ */
 abstract public class Task {
     private static final int CURRENT_YEAR = Calendar.getInstance().get(Calendar.YEAR);
     private static SimpleDateFormat dateFormatter = new SimpleDateFormat("d/M HHmm");
@@ -13,13 +16,28 @@ abstract public class Task {
     protected String taskName;
     protected boolean done = false; // by default it's false
 
+    /**
+     * Returns a task with <code>taskName</code>
+     *
+     * @param taskName name of the task
+     */
     public Task(String taskName) {
         this.taskName = taskName;
     }
 
-    // returns a summary of the task's state and info
+    /**
+     * Summarises the details and status of <code>this</code> task so that it can be stored.
+     *
+     * @return a summarised version of <code>this</code> task
+     */
     abstract public String getInfo();
 
+    /**
+     * Converts a string represented task to an instance of a <code>Task</code>.
+     *
+     * @param taskInfo summarised string representation of task
+     * @return an instance of <code>Task</code> with fields found in <code>taskInfo</code>
+     */
     public static Task strToTask(String taskInfo) {
         String[] parsedInfo = taskInfo.split(" \\| ");
         String type = parsedInfo[0];
@@ -59,10 +77,18 @@ abstract public class Task {
         }
     }
 
+    /**
+     * Marks <code>this</code> as done.
+     */
     public void done() {
         done = true;
     }
 
+    /**
+     * Returns a boolean indicating whether <code>this</code> is done
+     *
+     * @return <code>true</code> if <code>this</code> is done; otherwise, it returns <code>false</code>
+     */
     public boolean isDone() {
         return done;
     }

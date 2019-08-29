@@ -6,6 +6,7 @@ import java.util.Optional;
 public interface Command {
     /**
      * Executes the intended command.
+     *
      * @param taskList task list which <code>this</code> task should be added to
      * @param storage storage which stores all tasks on the local hard disk, if any
      * @throws Exception if command cannot be executed

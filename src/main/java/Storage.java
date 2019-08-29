@@ -6,9 +6,18 @@ import java.io.IOException;
 import java.util.stream.Stream;
 import java.util.stream.IntStream;
 
+/**
+ * This class allows us to update and save any changes in <code>taskList</code> to a file.
+ */
 public class Storage {
     private String path = "";
 
+    /**
+     * Returns a storage which we can use to write and read the file stored at <code>path</code>.
+     *
+     * @param path path to file which the user would like to store information from <code>taskList</code>
+     * @throws LoadException if the file cannot be read and or written to
+     */
     public Storage(String path) throws LoadException {
         this.path = path;
         try {
@@ -27,6 +36,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Returns a <code>Stream</code> of strings. Each string represents a summarised version of a <code>task</code>.
+     *
+     * @return strings of summarised version of all tasks
+     */
     public Stream<String> load() {
         try {
            return Files.lines(Paths.get(path));
@@ -35,6 +49,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Adds <code>task</code> to file found at <code>this</code> path.
+     *
+     * @param task task to be added to file
+     */
     public void addTask(Task task) {
         try {
             BufferedWriter w = new BufferedWriter(new FileWriter(path, true));
@@ -45,6 +64,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Rewrites the entire file to save updates made to <code>taskList</code>.
+     *
+     * @param tasks summarised string representation of all tasks found in <code>taskList</code>
+     */
     public void update(Stream<Task> tasks) {
         try {
             BufferedWriter w = new BufferedWriter(new FileWriter(path));
