@@ -41,7 +41,7 @@ abstract public class Task {
             break;
         }
         if (done) {
-            task.done();
+            task.setDone();
         }
         return task;
     }
@@ -59,7 +59,7 @@ abstract public class Task {
         }
     }
 
-    public void done() {
+    public void setDone() {
         done = true;
     }
 

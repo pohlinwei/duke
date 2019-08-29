@@ -36,7 +36,7 @@ public class TaskList {
         if (completedTask.isDone()) {
             throw new MultipleChecksException(taskNum + 1);
         } else {
-            completedTask.done();
+            completedTask.setDone();
             lastEditedTask = Optional.of(completedTask);
         }
     }
