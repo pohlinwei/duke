@@ -1,5 +1,8 @@
 import java.util.Arrays;
 
+/**
+ * This class gives us a user interface.
+ */
 public class Ui {
     // for formatting purposes
     private static String line = "    ____________________________________________________________\n";
@@ -33,6 +36,7 @@ public class Ui {
 
     /**
      * Informs user that task is completed.
+     *
      * @param completedTask task which has been successfully marked as done
      */
     public static void informDone(Task completedTask) {
@@ -42,6 +46,7 @@ public class Ui {
 
     /**
      * Informs user that the task has been deleted.
+     *
      * @param deletedTask task which has been successfully deleted
      * @param tasksNum number of tasks remaining in the list
      */
@@ -54,6 +59,7 @@ public class Ui {
 
     /**
      * Informs user that the task has been added.
+     *
      * @param addedTask task which has been successfully added
      * @param tasksNum number of tasks in the list
      */
@@ -65,6 +71,7 @@ public class Ui {
 
     /**
      * Informs user that an error has occurred.
+     *
      * @param e <code>Exception</code> encountered
      */
     public static void showError(Exception e) {

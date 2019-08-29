@@ -5,10 +5,22 @@ import java.util.Date;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
+/**
+ * This class gives us a parser which we can use to parse user input.
+ */
 public class Parser {
     private static final int CURRENT_YEAR = Calendar.getInstance().get(Calendar.YEAR);
     private static SimpleDateFormat dateFormatter = new SimpleDateFormat("d/M HHmm");
 
+    /**
+     * Returns an <code>Optional</code> value. If <code>command</code> can be successfully parsed,
+     * the result will contain the requested command; otherwise, it will be <code>empty</code>.
+     * <p>
+     * Command can be executed by using the <code>execute</code> method.
+     *
+     * @param command user input
+     * @return <code>Optional</code>command as specified by user, if parsing is successful; otherwise it is empty
+     */
     public static Optional<Command> parse(String command) {
         try {
             String[] parsedBySpaceArgs = command.split(" ");
