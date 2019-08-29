@@ -47,6 +47,9 @@ public class Parser {
                 return Optional.of(new MarkDoneCommand(completedTaskNum));
             case LIST:
                 return Optional.of(new ListCommand());
+            case FIND:
+                String query = parsedBySpaceArgs[1];
+                return Optional.of(new FindCommand(query));
             default:
                 try {
                     if (parsedBySpaceArgs.length < 2) {
