@@ -7,7 +7,6 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 import java.util.Optional;
 
-import duke.exception.InvalidCommandException;
 import duke.exception.MultipleChecksException;
 
 /**
