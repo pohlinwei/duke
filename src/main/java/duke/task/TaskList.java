@@ -7,6 +7,7 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 import java.util.Optional;
 
+import duke.exception.InvalidCommandException;
 import duke.exception.MultipleChecksException;
 
 /**
@@ -56,9 +57,13 @@ public class TaskList {
      *
      * @param taskNum index of task to be deleted
      */
-    public void deleteTask(int taskNum) {
-        lastEditedTask = Optional.of(tasks.get(taskNum));
-        tasks.remove(taskNum);
+    public void deleteTask(int taskNum) throws IndexOutOfBoundsException {
+        try {
+            lastEditedTask = Optional.of(tasks.get(taskNum));
+            tasks.remove(taskNum);
+        } catch (IndexOutOfBoundsException e) {
+            throw new IndexOutOfBoundsException("No such task found");
+        }
     }
 
     /**
@@ -68,12 +73,16 @@ public class TaskList {
      * @throws MultipleChecksException if the task with index <code>taskNum</code> has been marked as done previously
      */
     public void markTaskDone(int taskNum) throws MultipleChecksException {
-        Task completedTask = tasks.get(taskNum);
-        if (completedTask.isDone()) {
-            throw new MultipleChecksException(taskNum + 1);
-        } else {
-            completedTask.setDone();
-            lastEditedTask = Optional.of(completedTask);
+        try {
+            Task completedTask = tasks.get(taskNum);
+            if (completedTask.isDone()) {
+                throw new MultipleChecksException(taskNum + 1);
+            } else {
+                completedTask.setDone();
+                lastEditedTask = Optional.of(completedTask);
+            }
+        } catch (IndexOutOfBoundsException e) {
+            throw new IndexOutOfBoundsException("No such task");
         }
     }
 

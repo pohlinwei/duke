@@ -31,9 +31,10 @@ public class MarkDoneCommand implements Command {
      * @param taskList task list which contains <code>this</code> task
      * @param storage storage which stores all tasks on the local hard disk, if any
      */
-    public void execute(TaskList taskList, Optional<Storage> storage) throws MultipleChecksException {
-        taskList.markTaskDone(taskNum);
-        storage.ifPresent(s -> s.update(taskList.getTasksAsStream()));
-        Ui.informDone(taskList.getLastEditedTask());
+    public void execute(TaskList taskList, Optional<Storage> storage) throws MultipleChecksException,
+        IndexOutOfBoundsException {
+            taskList.markTaskDone(taskNum);
+            storage.ifPresent(s -> s.update(taskList.getTasksAsStream()));
+            Ui.informDone(taskList.getLastEditedTask());
     }
 }
