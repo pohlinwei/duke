@@ -1,8 +1,15 @@
 package duke.exception;
 
+/**
+ * This indicates that the user has indicated an empty description when trying to add a task.
+ */
 public class EmptyDescriptionException extends Exception {
     private String type;
 
+    /**
+     * Returns exception indicating that the user has indicated an empty description when trying to add a task.
+     * @param task task which has no description
+     */
     public EmptyDescriptionException(String task) {
         super();
         if (task.equals("event")) {

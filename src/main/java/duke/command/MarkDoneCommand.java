@@ -33,8 +33,8 @@ public class MarkDoneCommand implements Command {
      */
     public void execute(TaskList taskList, Optional<Storage> storage) throws MultipleChecksException,
         IndexOutOfBoundsException {
-            taskList.markTaskDone(taskNum);
-            storage.ifPresent(s -> s.update(taskList.getTasksAsStream()));
-            Ui.informDone(taskList.getLastEditedTask());
+        taskList.markTaskDone(taskNum);
+        storage.ifPresent(s -> s.update(taskList.getTasksAsStream()));
+        Ui.informDone(taskList.getLastEditedTask());
     }
 }

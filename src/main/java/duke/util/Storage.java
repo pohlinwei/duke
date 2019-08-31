@@ -47,7 +47,7 @@ public class Storage {
      */
     public Stream<String> load() {
         try {
-           return Files.lines(Paths.get(path));
+            return Files.lines(Paths.get(path));
         } catch (IOException e) {
             return Stream.of("");
         }
@@ -93,6 +93,7 @@ public class Storage {
         public LoadException() {
             super();
         }
+
         @Override
         public String getMessage() {
             return String.format("Unable to read/write tasks to hard disk.\nEntries will not be saved.");

@@ -32,8 +32,8 @@ public class TaskList {
     /**
      * Adds tasks that are retrieved from a <code>Stream</code> of strings representing a
      * summarised version of <code>task</code>s.
-     * <p><
-     * The <code>Stream</code> can be retrieved from a <code>Storage</code> object.
+     *
+     * <p>The <code>Stream</code> can be retrieved from a <code>Storage</code> object.
      *
      * @param previousTasks <code>Stream</code> of summarised string representation of <code>task</code>s
      */
@@ -95,7 +95,7 @@ public class TaskList {
     }
 
     /**
-     * Returns the number of tasks in this instance of <code>TaskList</code>
+     * Returns the number of tasks in this instance of <code>TaskList</code>.
      *
      * @return number of tasks in this instance of <code>TaskList</code>
      */

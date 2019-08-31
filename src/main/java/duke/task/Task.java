@@ -9,7 +9,7 @@ import java.util.Date;
 /**
  * An <code>abstract</code> class representing a task which has name and status (whether it is done) fields.
  */
-abstract public class Task {
+public abstract class Task {
     private static final int CURRENT_YEAR = Calendar.getInstance().get(Calendar.YEAR);
     private static SimpleDateFormat dateFormatter = new SimpleDateFormat("d/M HHmm");
     protected static final String SYMBOL_COMPLETE = "\u2714";
@@ -20,7 +20,7 @@ abstract public class Task {
     protected boolean done = false; // by default it's false
 
     /**
-     * Returns a task with <code>taskName</code>
+     * Returns a task with <code>taskName</code>.
      *
      * @param taskName name of the task
      */
@@ -33,7 +33,7 @@ abstract public class Task {
      *
      * @return a summarised version of <code>this</code> task
      */
-    abstract public String getInfo();
+    public abstract String getInfo();
 
     /**
      * Converts a string represented task to an instance of a <code>Task</code>.
@@ -88,7 +88,7 @@ abstract public class Task {
     }
 
     /**
-     * Returns a boolean indicating whether <code>this</code> is done
+     * Returns a boolean indicating whether <code>this</code> is done.
      *
      * @return <code>true</code> if <code>this</code> is done; otherwise, it returns <code>false</code>
      */

@@ -36,8 +36,8 @@ public class Parser {
     /**
      * Returns an <code>Optional</code> value. If <code>command</code> can be successfully parsed,
      * the result will contain the requested command; otherwise, it will be <code>empty</code>.
-     * <p>
-     * Command can be executed by using the <code>execute</code> method.
+     *
+     * <p>Command can be executed by using the <code>execute</code> method.
      *
      * @param command user input
      * @return <code>Optional</code>command as specified by user, if parsing is successful; otherwise it is empty

@@ -68,8 +68,8 @@ public class Ui {
      * @param tasksNum number of tasks in the list
      */
     public static void informAdded(Task addedTask, int tasksNum) {
-        String response = String.format("Got it. I've added this task:\n  %s\n" +
-                        "Now you have %d tasks in the list.\n", addedTask, tasksNum);
+        String response = String.format("Got it. I've added this task:\n  %s\n"
+                        + "Now you have %d tasks in the list.\n", addedTask, tasksNum);
         System.out.print(formatOutput(response));
     }
 

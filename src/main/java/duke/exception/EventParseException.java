@@ -13,8 +13,8 @@ public class EventParseException extends ParseException {
 
     @Override
     public String getMessage() {
-        return String.format(super.getMessage() + "\n" +
-                "Please input event info in the following format:\n" +
-                "\tevent dance /at 20/1 1800-1830");
+        return String.format(super.getMessage() + "\n"
+                + "Please input event info in the following format:\n"
+                + "\tevent dance /at 20/1 1800-1830");
     }
 }
