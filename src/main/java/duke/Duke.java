@@ -50,12 +50,6 @@ public class Duke {
         desiredStorage.ifPresent(s -> taskList.addPreviousTasks(s.load()));
     }
 
-
-    public void main(String[] args) {
-        // todo how to greet user
-        // Ui.sayHi();
-    }
-
     public String getResponse(String input) {
         String response = "";
         Optional<Command> command;
@@ -68,5 +62,9 @@ public class Duke {
         } finally {
             return response;
         }
+    }
+
+    public String sayHi() {
+        return Ui.sayHi();
     }
 }

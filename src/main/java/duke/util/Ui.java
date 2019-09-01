@@ -11,7 +11,7 @@ public class Ui {
     private static String prependSpace = "     ";
 
     // default statements
-    private static String hi = "Hello! I'm Duke\nWhat can I do for you?";
+    private static String hi = "Hello! I'm Duke. What can I do for you?";
     private static String bye = "Bye. Hope to see you again soon!";
     private static String listIntro = "Here are the tasks in your list:";
     private static String searchResultsIntro = "Here are the matching tasks in your list:";
