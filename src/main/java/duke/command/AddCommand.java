@@ -30,9 +30,9 @@ public class AddCommand implements Command {
      * @param taskList task list which <code>this</code> task should be added to
      * @param storage storage which stores all tasks on the local hard disk, if any
      */
-    public void execute(TaskList taskList, Optional<Storage> storage) {
+    public String execute(TaskList taskList, Optional<Storage> storage) {
         taskList.addTask(task);
         storage.ifPresent(s -> s.addTask(task));
-        Ui.informAdded(taskList.getLastEditedTask(), taskList.getSize());
+        return Ui.informAdded(taskList.getLastEditedTask(), taskList.getSize());
     }
 }

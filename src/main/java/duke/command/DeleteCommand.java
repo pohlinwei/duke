@@ -30,9 +30,9 @@ public class DeleteCommand implements Command {
      * @param taskList task list which the task should be added to
      * @param storage storage which stores all tasks on the local hard disk, if any
      */
-    public void execute(TaskList taskList, Optional<Storage> storage) throws IndexOutOfBoundsException {
+    public String execute(TaskList taskList, Optional<Storage> storage) throws IndexOutOfBoundsException {
         taskList.deleteTask(taskNum);
         storage.ifPresent(s -> s.update(taskList.getTasksAsStream()));
-        Ui.informDeleted(taskList.getLastEditedTask(), taskList.getSize());
+        return Ui.informDeleted(taskList.getLastEditedTask(), taskList.getSize());
     }
 }

@@ -15,5 +15,5 @@ public interface Command {
      * @param storage storage which stores all tasks on the local hard disk, if any
      * @throws Exception if command cannot be executed
      */
-    public void execute(TaskList taskList, Optional<Storage> storage) throws Exception;
+    public String execute(TaskList taskList, Optional<Storage> storage) throws Exception;
 }

@@ -17,7 +17,7 @@ public class ExitCommand implements Command {
      * @param taskList task list which <code>this</code> task should be added to
      * @param storage storage which stores all tasks on the local hard disk, if any
      */
-    public void execute(TaskList taskList, Optional<Storage> storage) {
-        Ui.sayBye();
+    public String execute(TaskList taskList, Optional<Storage> storage) {
+        return Ui.sayBye();
     }
 }

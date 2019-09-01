@@ -42,54 +42,49 @@ public class Parser {
      * @param command user input
      * @return <code>Optional</code>command as specified by user, if parsing is successful; otherwise it is empty
      */
-    public static Optional<Command> parse(String command) {
+    public static Optional<Command> parse(String command) throws Exception {
+        String[] parsedBySpaceArgs = command.split(" ");
+        if (parsedBySpaceArgs.length < 1) {
+            throw new InvalidCommandException();
+        }
+        String commandVerb = parsedBySpaceArgs[0].toUpperCase();
+        CommandType commandType;
+
         try {
-            String[] parsedBySpaceArgs = command.split(" ");
-            if (parsedBySpaceArgs.length < 1) {
-                throw new InvalidCommandException();
-            }
-            String commandVerb = parsedBySpaceArgs[0].toUpperCase();
-            CommandType commandType;
+            commandType = CommandType.valueOf(commandVerb);
+        } catch (IllegalArgumentException e) {
+            throw new InvalidCommandException();
+        }
 
+        switch (commandType) {
+        case BYE:
+            return Optional.of(new ExitCommand());
+        case DELETE:
+            int deletedTaskNum = Integer.parseInt(parsedBySpaceArgs[1]) - 1;
+            return Optional.of(new DeleteCommand(deletedTaskNum));
+        case DONE:
+            int completedTaskNum = Integer.parseInt(parsedBySpaceArgs[1]) - 1;
+            return Optional.of(new MarkDoneCommand(completedTaskNum));
+        case LIST:
+            return Optional.of(new ListCommand());
+        case FIND:
+            String query = parsedBySpaceArgs[1];
+            return Optional.of(new FindCommand(query));
+        default:
             try {
-                commandType = CommandType.valueOf(commandVerb);
-            } catch (IllegalArgumentException e) {
-                throw new InvalidCommandException();
-            }
-
-            switch (commandType) {
-            case BYE:
-                return Optional.of(new ExitCommand());
-            case DELETE:
-                int deletedTaskNum = Integer.parseInt(parsedBySpaceArgs[1]) - 1;
-                return Optional.of(new DeleteCommand(deletedTaskNum));
-            case DONE:
-                int completedTaskNum = Integer.parseInt(parsedBySpaceArgs[1]) - 1;
-                return Optional.of(new MarkDoneCommand(completedTaskNum));
-            case LIST:
-                return Optional.of(new ListCommand());
-            case FIND:
-                String query = parsedBySpaceArgs[1];
-                return Optional.of(new FindCommand(query));
-            default:
-                try {
-                    if (parsedBySpaceArgs.length < 2) {
-                        throw new EmptyDescriptionException(commandType.toString().toLowerCase());
-                    }
-                    String taskDetails = "";
-                    taskDetails = IntStream.range(1, parsedBySpaceArgs.length)
-                            .mapToObj(i -> parsedBySpaceArgs[i])
-                            .reduce("", (prev, curr) -> prev + curr + " ")
-                            .trim();
-                    Task newTask = parseTask(commandType, taskDetails);
-                    return Optional.of(new AddCommand(newTask));
-                } catch (ParseException e) {
-                    throw e;
+                if (parsedBySpaceArgs.length < 2) {
+                    throw new EmptyDescriptionException(commandType.toString().toLowerCase());
                 }
+                String taskDetails = "";
+                taskDetails = IntStream.range(1, parsedBySpaceArgs.length)
+                        .mapToObj(i -> parsedBySpaceArgs[i])
+                        .reduce("", (prev, curr) -> prev + curr + " ")
+                        .trim();
+                Task newTask = parseTask(commandType, taskDetails);
+                return Optional.of(new AddCommand(newTask));
+            } catch (ParseException e) {
+                throw e;
             }
-        } catch (Exception e) {
-            Ui.showError(e);
-            return Optional.empty();
         }
     }
 

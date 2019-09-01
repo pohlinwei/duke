@@ -17,7 +17,7 @@ public class FindCommand implements Command {
         this.query = query;
     }
 
-    public void execute(TaskList taskList, Optional<Storage> storage) {
+    public String execute(TaskList taskList, Optional<Storage> storage) {
         List<String> results = taskList.getTasksAsStream()
                 .map(t -> t.toString())
                 .filter(t -> t.contains(query))
@@ -25,6 +25,6 @@ public class FindCommand implements Command {
         String resultString = IntStream.range(0, results.size())
                 .mapToObj(i -> String.format("%d. %s\n", (i + 1), results.get(i)))
                 .reduce("", (prev, curr) -> prev + curr);
-        Ui.showSearchResults(resultString);
+        return Ui.showSearchResults(resultString);
     }
 }

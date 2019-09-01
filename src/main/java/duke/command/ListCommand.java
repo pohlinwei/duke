@@ -17,7 +17,7 @@ public class ListCommand implements Command {
      * @param taskList task list which contains all tasks
      * @param storage storage which stores all tasks on the local hard disk, if any
      */
-    public void execute(TaskList taskList, Optional<Storage> storage) {
-        Ui.showList(taskList.toString());
+    public String execute(TaskList taskList, Optional<Storage> storage) {
+        return Ui.showList(taskList.toString());
     }
 }
