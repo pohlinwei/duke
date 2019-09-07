@@ -1,4 +1,4 @@
-package duke.util;
+package duke.util.ui;
 
 import duke.task.Task;
 
@@ -72,6 +72,12 @@ public class Ui {
         String response = String.format("Got it. I've added this task:\n%s\n\n"
                         + "Now you have %d tasks in the list.\n", addedTask, tasksNum);
        return response;
+    }
+
+    public static String informChanged(String path) {
+        String response = String.format("Done! Tasks from %s have been loaded and all new entries will be stored at %s",
+            path, path);
+        return response;
     }
 
     /**

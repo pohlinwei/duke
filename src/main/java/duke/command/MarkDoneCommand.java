@@ -1,13 +1,10 @@
 package duke.command;
 
-import java.util.Optional;
-
 import duke.exception.MultipleChecksException;
 
 import duke.task.TaskList;
-
-import duke.util.Storage;
-import duke.util.Ui;
+import duke.util.storage.OptionalStorage;
+import duke.util.ui.Ui;
 
 /**
  * This class allows a task to be marked as completed.
@@ -32,10 +29,10 @@ public class MarkDoneCommand implements Command {
      * @param taskList task list which contains <code>this</code> task
      * @param storage storage which stores all tasks on the local hard disk, if any
      */
-    public String execute(TaskList taskList, Optional<Storage> storage) throws MultipleChecksException,
+    public String execute(TaskList taskList, OptionalStorage storage) throws MultipleChecksException,
         IndexOutOfBoundsException {
         taskList.markTaskDone(taskNum);
-        storage.ifPresent(s -> s.update(taskList.getTasksAsStream()));
+        storage.update(taskList.getTasksAsStream());
         return Ui.informDone(taskList.getLastEditedTask());
     }
 

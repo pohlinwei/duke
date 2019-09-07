@@ -1,4 +1,4 @@
-package duke.util;
+package duke.util.storage;
 
 import java.io.FileWriter;
 import java.io.BufferedWriter;
@@ -14,8 +14,8 @@ import duke.exception.LoadException;
 /**
  * This class allows us to update and save any changes in <code>taskList</code> to a file.
  */
-public class Storage {
-    private String path = "";
+class Storage {
+    private String path;
 
     /**
      * Returns a storage which we can use to write and read the file stored at <code>path</code>.
@@ -23,7 +23,7 @@ public class Storage {
      * @param path path to file which the user would like to store information from <code>taskList</code>
      * @throws LoadException if the file cannot be read and or written to
      */
-    public Storage(String path) throws LoadException {
+    Storage(String path) throws LoadException {
         this.path = path;
         try {
             if (path.equals("")) {
@@ -31,7 +31,6 @@ public class Storage {
             } else if (!Files.exists(Paths.get(path))) {
                 createFile(path);
             }
-
             if (!Files.isReadable(Paths.get(path)) || !Files.isWritable(Paths.get(path))) {
                 throw new LoadException();
             }
@@ -63,7 +62,7 @@ public class Storage {
      *
      * @return strings of summarised version of all tasks
      */
-    public Stream<String> load() {
+    Stream<String> load() {
         try {
             return Files.lines(Paths.get(path));
         } catch (IOException e) {
@@ -76,7 +75,7 @@ public class Storage {
      *
      * @param task task to be added to file
      */
-    public void addTask(Task task) {
+    void addTask(Task task) {
         try {
             BufferedWriter w = new BufferedWriter(new FileWriter(path, true));
             w.write(task.getInfo() + System.lineSeparator());
@@ -91,7 +90,7 @@ public class Storage {
      *
      * @param tasks summarised string representation of all tasks found in <code>taskList</code>
      */
-    public void update(Stream<Task> tasks) {
+    void update(Stream<Task> tasks) {
         try {
             BufferedWriter w = new BufferedWriter(new FileWriter(path));
             tasks.forEach(task -> {

@@ -39,6 +39,10 @@ public class TaskList {
         tasks.addAll(toTaskList(previousTasks));
     }
 
+    public void removeAll() {
+        tasks.clear();
+    }
+
     /**
      * Adds <code>newTask</code> to <code>this</code>.
      *

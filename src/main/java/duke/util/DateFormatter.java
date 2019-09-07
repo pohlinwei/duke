@@ -5,9 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-/**
- *
- */
 public class DateFormatter {
     private static final int CURRENT_YEAR = Calendar.getInstance().get(Calendar.YEAR);
     private static SimpleDateFormat dateFormatter = new SimpleDateFormat("d/M HHmm");

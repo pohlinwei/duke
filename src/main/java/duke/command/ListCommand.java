@@ -1,11 +1,9 @@
 package duke.command;
 
-import java.util.Optional;
-
 import duke.task.TaskList;
 
-import duke.util.Storage;
-import duke.util.Ui;
+import duke.util.storage.OptionalStorage;
+import duke.util.ui.Ui;
 
 /**
  * This class allows a new task to be added to a <code>TaskList</code> object.
@@ -19,7 +17,7 @@ public class ListCommand implements Command {
      * @param taskList task list which contains all tasks
      * @param storage storage which stores all tasks on the local hard disk, if any
      */
-    public String execute(TaskList taskList, Optional<Storage> storage) {
+    public String execute(TaskList taskList, OptionalStorage storage) {
         return Ui.showList(taskList.toString());
     }
 

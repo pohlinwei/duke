@@ -1,8 +1,8 @@
 package duke.command;
 
-import java.util.Optional;
+
 import duke.task.TaskList;
-import duke.util.Storage;
+import duke.util.storage.OptionalStorage;
 
 /**
  * This allows commands, as indicated by a user's input, to be executed.
@@ -15,7 +15,7 @@ public interface Command {
      * @param storage storage which stores all tasks on the local hard disk, if any
      * @throws Exception if command cannot be executed
      */
-    public String execute(TaskList taskList, Optional<Storage> storage) throws Exception;
+    public String execute(TaskList taskList, OptionalStorage storage) throws Exception;
 
     public boolean isExit();
 }

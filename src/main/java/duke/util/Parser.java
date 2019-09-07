@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
+import duke.command.ChangeStorageCommand;
 import duke.command.Command;
 import duke.command.AddCommand;
 import duke.command.CommandType;
@@ -19,6 +20,7 @@ import duke.exception.DeleteException;
 import duke.exception.EmptyDescriptionException;
 import duke.exception.EventParseException;
 import duke.exception.InvalidCommandException;
+import duke.exception.InvalidPathException;
 import duke.exception.MarkDoneException;
 
 import duke.task.Deadline;
@@ -79,6 +81,12 @@ public class Parser {
                 .reduce("", (prev, curr) -> prev + curr + " ")
                 .trim();
             return Optional.of(new FindCommand(query));
+        case STORAGE:
+            if (parsedBySpaceArgs.length != 2) {
+                throw new InvalidPathException();
+            }
+            String path = parsedBySpaceArgs[1];
+            return Optional.of(new ChangeStorageCommand(path));
         default:
             try {
                 if (parsedBySpaceArgs.length < 2) {

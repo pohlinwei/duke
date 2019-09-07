@@ -5,10 +5,10 @@ import java.util.Optional;
 import duke.command.Command;
 import duke.exception.LoadException;
 import duke.task.TaskList;
-import duke.util.Storage;
+import duke.util.storage.OptionalStorage;
 import duke.util.Parser;
+import duke.util.ui.Ui;
 import duke.util.Response;
-import duke.util.Ui;
 
 /**
  * This class returns Duke, a task manager.
@@ -17,7 +17,7 @@ import duke.util.Ui;
 public class Duke {
     private static String entries = "../data/entries.txt";
     private TaskList taskList = TaskList.instanceOf();
-    private Optional<Storage> storage;
+    private OptionalStorage storage;
     private boolean hasStorage = true;
 
     /**
@@ -26,13 +26,12 @@ public class Duke {
      */
     public Duke() {
         try {
-            storage = Optional.of(new Storage(entries));
+            storage = new OptionalStorage(entries);
         } catch (LoadException e) {
-            storage = Optional.empty();
+            storage = new OptionalStorage();
             this.hasStorage = false;
         }
-        Optional<Storage> desiredStorage = storage;
-        desiredStorage.ifPresent(s -> taskList.addPreviousTasks(s.load()));
+        storage.load(taskList);
     }
 
     /**
@@ -49,7 +48,9 @@ public class Duke {
 
         try {
             command = Parser.parse(input);
-            response = new Response(command.get().execute(taskList, storage), command.get().isExit());
+            String message = command.get().execute(taskList, storage);
+            boolean isExit = command.get().isExit();
+            response = new Response(message, isExit);
         } catch (Exception e) {
             response = new Response(Ui.showError(e), false);
         } finally {

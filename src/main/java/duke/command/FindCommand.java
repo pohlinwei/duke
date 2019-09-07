@@ -7,8 +7,8 @@ import java.util.stream.IntStream;
 
 import duke.task.TaskList;
 
-import duke.util.Storage;
-import duke.util.Ui;
+import duke.util.storage.OptionalStorage;
+import duke.util.ui.Ui;
 
 public class FindCommand implements Command {
     private final static boolean IS_EXIT = false;
@@ -18,7 +18,7 @@ public class FindCommand implements Command {
         this.query = query;
     }
 
-    public String execute(TaskList taskList, Optional<Storage> storage) {
+    public String execute(TaskList taskList, OptionalStorage storage) {
         List<String> results = taskList.getTasksAsStream()
                 .map(t -> t.toString())
                 .filter(t -> t.contains(query))
