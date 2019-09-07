@@ -11,6 +11,7 @@ import duke.util.Ui;
  * This class allows a new task to be added to a <code>TaskList</code> object.
  */
 public class AddCommand implements Command {
+    private final static boolean IS_EXIT = false;
     Task task;
 
     /**
@@ -34,5 +35,9 @@ public class AddCommand implements Command {
         taskList.addTask(task);
         storage.ifPresent(s -> s.addTask(task));
         return Ui.informAdded(taskList.getLastEditedTask(), taskList.getSize());
+    }
+
+    public boolean isExit() {
+        return IS_EXIT;
     }
 }

@@ -11,6 +11,8 @@ import duke.util.Ui;
  * This class allows a new task to be added to a <code>TaskList</code> object.
  */
 public class ListCommand implements Command {
+    private final static boolean IS_EXIT = false;
+
     /**
      * Executes this command by listing all tasks in <code>taskList</code>.
      *
@@ -19,5 +21,9 @@ public class ListCommand implements Command {
      */
     public String execute(TaskList taskList, Optional<Storage> storage) {
         return Ui.showList(taskList.toString());
+    }
+
+    public boolean isExit() {
+        return IS_EXIT;
     }
 }

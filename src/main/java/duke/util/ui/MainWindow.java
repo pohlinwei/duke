@@ -1,6 +1,8 @@
 package duke.util.ui;
 
 import duke.Duke;
+import duke.exception.LoadException;
+import duke.util.Response;
 import duke.util.ui.DialogBox;
 
 import javafx.fxml.FXML;
@@ -44,12 +46,15 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
-        String response = duke.getResponse(input);
+        Response response = duke.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, dukeImage)
+                DialogBox.getDukeDialog(response.getMessage(), dukeImage)
         );
         userInput.clear();
+        if (response.isExit()) {
+            disableInput();
+        }
     }
 
     @FXML
@@ -57,5 +62,21 @@ public class MainWindow extends AnchorPane {
         dialogContainer.getChildren().addAll(
                 DialogBox.getDukeDialog(duke.sayHi(), dukeImage)
         );
+    }
+
+    @FXML
+    public void informStorageCapabilities() {
+        if (!duke.hasStorage()) {
+            String errMsg = (new LoadException()).toString();
+            dialogContainer.getChildren().addAll(
+                DialogBox.getDukeDialog(errMsg, dukeImage)
+            );
+        }
+    }
+
+    @FXML
+    public void disableInput() {
+        userInput.setDisable(true);
+        sendButton.setDisable(true);
     }
 }

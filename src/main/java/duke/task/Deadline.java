@@ -1,14 +1,13 @@
 package duke.task;
 
-import java.text.SimpleDateFormat;
+import duke.util.DateFormatter;
+
 import java.util.Calendar;
 
 /**
  * This class represents tasks that need to be done before a specific date/time.
  */
 public class Deadline extends Task {
-    private static SimpleDateFormat dateBeautifier = new SimpleDateFormat("dd/MM/yy h:mma");
-
     private String details;
     private Calendar dateTime;
 
@@ -43,7 +42,7 @@ public class Deadline extends Task {
      * @return <code>Task</code> representing the given input
      */
     public static Task stringToTask(String name, String timeInfo) {
-        return new Deadline(name, timeInfo, Task.parseDate(timeInfo));
+        return new Deadline(name, timeInfo, DateFormatter.parseCorrectedDate(timeInfo));
     }
 
     /**
@@ -54,7 +53,7 @@ public class Deadline extends Task {
     @Override
     public String toString() {
         return String.format("[D][%s] %s (by: %s)", isDone ? SYMBOL_COMPLETE : SYMBOL_INCOMPLETE,
-                taskName, dateBeautifier.format(dateTime.getTime()));
+                taskName, DateFormatter.dateBeautifier().format(dateTime.getTime()));
     }
 
     /**

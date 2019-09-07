@@ -9,6 +9,7 @@ import java.util.stream.Stream;
 import java.util.stream.IntStream;
 
 import duke.task.Task;
+import duke.exception.LoadException;
 
 /**
  * This class allows us to update and save any changes in <code>taskList</code> to a file.
@@ -25,19 +26,33 @@ public class Storage {
     public Storage(String path) throws LoadException {
         this.path = path;
         try {
-            if (!Files.exists(Paths.get(path))) {
-                String[] parsedPath = path.split("/");
-                // determine dirs path
-                String dirPath = IntStream.range(0, parsedPath.length - 1)
-                        .mapToObj(i -> parsedPath[i])
-                        .reduce("", (prev, curr) -> prev + curr + "/");
-                Files.createDirectories(Paths.get(dirPath));
-                Files.createFile(Paths.get(path));
-            } else {
-                if (!Files.isReadable(Paths.get(path)) || !Files.isWritable(Paths.get(path))) {
-                    throw new LoadException();
-                }
+            if (path.equals("")) {
+                throw new LoadException();
+            } else if (!Files.exists(Paths.get(path))) {
+                createFile(path);
             }
+
+            if (!Files.isReadable(Paths.get(path)) || !Files.isWritable(Paths.get(path))) {
+                throw new LoadException();
+            }
+        } catch (IOException e) {
+            throw new LoadException();
+        }
+    }
+
+    /**
+     * Creates a new file at <code>path</code>.
+     * @param path path where new file will be located relative to main app's working directory
+     */
+    private void createFile(String path) throws LoadException {
+        try {
+            String[] parsedPath = path.split("/");
+            // determine dirs path
+            String dirPath = IntStream.range(0, parsedPath.length - 1)
+                    .mapToObj(i -> parsedPath[i])
+                    .reduce("", (prev, curr) -> prev + curr + "/");
+            Files.createDirectories(Paths.get(dirPath));
+            Files.createFile(Paths.get(path));
         } catch (IOException e) {
             throw new LoadException();
         }
@@ -89,17 +104,6 @@ public class Storage {
             w.close();
         } catch (IOException e) {
             assert false : "File should be readable and writeable";
-        }
-    }
-
-    private class LoadException extends IOException {
-        public LoadException() {
-            super();
-        }
-
-        @Override
-        public String getMessage() {
-            return String.format("Unable to read/write tasks to hard disk.\nEntries will not be saved.");
         }
     }
 }

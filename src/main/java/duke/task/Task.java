@@ -1,17 +1,9 @@
 package duke.task;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-
-import java.util.Calendar;
-import java.util.Date;
-
 /**
  * An <code>abstract</code> class representing a task which has name and status (whether it is done) fields.
  */
 public abstract class Task {
-    private static final int CURRENT_YEAR = Calendar.getInstance().get(Calendar.YEAR);
-    private static SimpleDateFormat dateFormatter = new SimpleDateFormat("d/M HHmm");
     protected static final String SYMBOL_COMPLETE = "\u2714";
     protected static final String SYMBOL_INCOMPLETE = "\u2718";
 
@@ -65,19 +57,6 @@ public abstract class Task {
             task.setDone();
         }
         return task;
-    }
-
-    protected static Calendar parseDate(String str) {
-        Calendar c = Calendar.getInstance();
-        try {
-            Date date = dateFormatter.parse(str);
-            c.setTime(date);
-            c.set(Calendar.YEAR, CURRENT_YEAR);
-        } catch (ParseException e) {
-            assert false : "Date format was mistakenly accepted as correct";
-        } finally {
-            return c;
-        }
     }
 
     /**

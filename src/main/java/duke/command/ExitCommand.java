@@ -10,6 +10,8 @@ import duke.util.Ui;
  * This class allows us to terminate the program.
  */
 public class ExitCommand implements Command {
+    private final static boolean IS_EXIT = true;
+
     /**
      * Bids farewell to user.
      *
@@ -18,5 +20,9 @@ public class ExitCommand implements Command {
      */
     public String execute(TaskList taskList, Optional<Storage> storage) {
         return Ui.sayBye();
+    }
+
+    public boolean isExit() {
+        return IS_EXIT;
     }
 }

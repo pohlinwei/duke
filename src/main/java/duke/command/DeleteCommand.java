@@ -11,6 +11,7 @@ import duke.util.Ui;
  * This class allows a task to be deleted from a <code>TaskList</code> object.
  */
 public class DeleteCommand implements Command {
+    private final static boolean IS_EXIT = false;
     int taskNum;
 
     /**
@@ -33,5 +34,9 @@ public class DeleteCommand implements Command {
         taskList.deleteTask(taskNum);
         storage.ifPresent(s -> s.update(taskList.getTasksAsStream()));
         return Ui.informDeleted(taskList.getLastEditedTask(), taskList.getSize());
+    }
+
+    public boolean isExit() {
+        return IS_EXIT;
     }
 }

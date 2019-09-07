@@ -1,14 +1,13 @@
 package duke.task;
 
-import java.text.SimpleDateFormat;
+import duke.util.DateFormatter;
+
 import java.util.Calendar;
 
 /**
  * This class represents tasks that start at a specific time and ends at a specific time.
  */
 public class Event extends Task {
-    private static SimpleDateFormat dateBeautifier = new SimpleDateFormat("dd/MM/yy h:mma");
-
     private String details;
     private Calendar startTime;
     private Calendar endTime;
@@ -52,7 +51,8 @@ public class Event extends Task {
         String timeDate1 = date + " " + time1;
         String timeDate2 = date + " " + time2;
 
-        return new Event(name, timeInfo, Task.parseDate(timeDate1), Task.parseDate(timeDate2));
+        return new Event(name, timeInfo, DateFormatter.parseCorrectedDate(timeDate1),
+            DateFormatter.parseCorrectedDate(timeDate2));
     }
 
     /**
@@ -63,7 +63,7 @@ public class Event extends Task {
     @Override
     public String toString() {
         return String.format("[E][%s] %s (at: %s-%s)", isDone ? SYMBOL_COMPLETE : SYMBOL_INCOMPLETE, taskName,
-                dateBeautifier.format(startTime.getTime()),
-                dateBeautifier.format(endTime.getTime()).split(" ")[1]);
+                DateFormatter.dateBeautifier().format(startTime.getTime()),
+                DateFormatter.dateBeautifier().format(endTime.getTime()).split(" ")[1]);
     }
 }

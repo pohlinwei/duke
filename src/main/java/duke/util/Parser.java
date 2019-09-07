@@ -1,9 +1,7 @@
 package duke.util;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
@@ -16,10 +14,12 @@ import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkDoneCommand;
 
+import duke.exception.DeadlineParseException;
+import duke.exception.DeleteException;
 import duke.exception.EmptyDescriptionException;
 import duke.exception.EventParseException;
-import duke.exception.DeadlineParseException;
 import duke.exception.InvalidCommandException;
+import duke.exception.MarkDoneException;
 
 import duke.task.Deadline;
 import duke.task.Event;
@@ -27,11 +27,11 @@ import duke.task.Todo;
 import duke.task.Task;
 
 /**
- * This class gives us a parser which we can use to parse user input.
+ * This class provides a parser which can be used to parse user input.
  */
 public class Parser {
-    private static final int CURRENT_YEAR = Calendar.getInstance().get(Calendar.YEAR);
-    private static SimpleDateFormat dateFormatter = new SimpleDateFormat("d/M HHmm");
+    // prevents user from directly creating a parser object
+    private Parser() {}
 
     /**
      * Returns an <code>Optional</code> value. If <code>command</code> can be successfully parsed,
@@ -60,15 +60,24 @@ public class Parser {
         case BYE:
             return Optional.of(new ExitCommand());
         case DELETE:
+            if (parsedBySpaceArgs.length != 2) {
+                throw new DeleteException();
+            }
             int deletedTaskNum = Integer.parseInt(parsedBySpaceArgs[1]) - 1;
             return Optional.of(new DeleteCommand(deletedTaskNum));
         case DONE:
+            if (parsedBySpaceArgs.length != 2) {
+                throw new MarkDoneException();
+            }
             int completedTaskNum = Integer.parseInt(parsedBySpaceArgs[1]) - 1;
             return Optional.of(new MarkDoneCommand(completedTaskNum));
         case LIST:
             return Optional.of(new ListCommand());
         case FIND:
-            String query = parsedBySpaceArgs[1];
+            String query = IntStream.range(0, parsedBySpaceArgs.length)
+                .mapToObj(i -> parsedBySpaceArgs[i])
+                .reduce("", (prev, curr) -> prev + curr + " ")
+                .trim();
             return Optional.of(new FindCommand(query));
         default:
             try {
@@ -88,12 +97,22 @@ public class Parser {
         }
     }
 
-    private static Task parseTask(CommandType commandType, String taskDetails) throws ParseException {
-        if (commandType.equals(CommandType.TODO)) {
+    /**
+     * Parses <code>taskDetails</code> of tasks and creates a new object. The object will be either a
+     * deadline, event or todo, as determined by <code>taskType</code>.
+     *
+     * @param taskType command which indicates type of task
+     * @param taskDetails name, date and time of task
+     * @return task with properties that are determined by command
+     * @throws ParseException if <code>taskDetails</code> is in the incorrect format
+     */
+    private static Task parseTask(CommandType taskType, String taskDetails) throws ParseException {
+        if (taskType.equals(CommandType.TODO)) {
             return parseTodo(taskDetails);
-        } else if (commandType.equals(CommandType.DEADLINE)) {
+        } else if (taskType.equals(CommandType.DEADLINE)) {
             return parseDeadline(taskDetails);
         } else {
+            assert taskType.equals(CommandType.EVENT) : "Only task of todo, deadline or event type can be parsed";
             return parseEvent(taskDetails);
         }
     }
@@ -110,7 +129,7 @@ public class Parser {
         String name = parsedDetails[0];
         String dateTimeStr = parsedDetails[1];
         try {
-            Calendar dateTimeInfo = parseDate(dateTimeStr);
+            Calendar dateTimeInfo = DateFormatter.parseDate(dateTimeStr);
             return new Deadline(name, dateTimeStr, dateTimeInfo);
         } catch (ParseException e) {
             throw new DeadlineParseException("Incorrect date/time format for deadline");
@@ -134,19 +153,11 @@ public class Parser {
             throw new EventParseException("Missing start/end time");
         }
         try {
-            Calendar startTime = parseDate(date + " " + times[0]);
-            Calendar endTime = parseDate(date + " " + times[1]);
+            Calendar startTime = DateFormatter.parseDate(date + " " + times[0]);
+            Calendar endTime = DateFormatter.parseDate(date + " " + times[1]);
             return new Event(name, dateTimeInfo, startTime, endTime);
         } catch (ParseException e) {
             throw new EventParseException("Incorrect date/time format for deadline");
         }
-    }
-
-    private static Calendar parseDate(String str) throws ParseException {
-        Calendar c = Calendar.getInstance();
-        Date date = dateFormatter.parse(str);
-        c.setTime(date);
-        c.set(Calendar.YEAR, CURRENT_YEAR);
-        return c;
     }
 }

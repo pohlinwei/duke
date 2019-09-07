@@ -16,4 +16,6 @@ public interface Command {
      * @throws Exception if command cannot be executed
      */
     public String execute(TaskList taskList, Optional<Storage> storage) throws Exception;
+
+    public boolean isExit();
 }

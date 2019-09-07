@@ -13,6 +13,7 @@ import duke.util.Ui;
  * This class allows a task to be marked as completed.
  */
 public class MarkDoneCommand implements Command {
+    private final static boolean IS_EXIT = false;
     int taskNum;
 
     /**
@@ -36,5 +37,9 @@ public class MarkDoneCommand implements Command {
         taskList.markTaskDone(taskNum);
         storage.ifPresent(s -> s.update(taskList.getTasksAsStream()));
         return Ui.informDone(taskList.getLastEditedTask());
+    }
+
+    public boolean isExit() {
+        return IS_EXIT;
     }
 }

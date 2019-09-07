@@ -11,6 +11,7 @@ import duke.util.Storage;
 import duke.util.Ui;
 
 public class FindCommand implements Command {
+    private final static boolean IS_EXIT = false;
     String query;
 
     public FindCommand(String query) {
@@ -26,5 +27,9 @@ public class FindCommand implements Command {
                 .mapToObj(i -> String.format("%d. %s\n", (i + 1), results.get(i)))
                 .reduce("", (prev, curr) -> prev + curr);
         return Ui.showSearchResults(resultString);
+    }
+
+    public boolean isExit() {
+        return IS_EXIT;
     }
 }
