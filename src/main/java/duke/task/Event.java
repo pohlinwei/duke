@@ -33,7 +33,7 @@ public class Event extends Task {
      * @return a summarised version of <code>this</code> task
      */
     public String getInfo() {
-        return String.format("E | %d | %s | %s", done ? 1 : 0, taskName, details);
+        return String.format("E | %d | %s | %s", isDone ? 1 : 0, taskName, details);
     }
 
     /**
@@ -51,6 +51,7 @@ public class Event extends Task {
         String time2 = times[1];
         String timeDate1 = date + " " + time1;
         String timeDate2 = date + " " + time2;
+
         return new Event(name, timeInfo, Task.parseDate(timeDate1), Task.parseDate(timeDate2));
     }
 
@@ -61,7 +62,7 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[E][%s] %s (at: %s-%s)", done ? SYMBOL_COMPLETE : SYMBOL_INCOMPLETE, taskName,
+        return String.format("[E][%s] %s (at: %s-%s)", isDone ? SYMBOL_COMPLETE : SYMBOL_INCOMPLETE, taskName,
                 dateBeautifier.format(startTime.getTime()),
                 dateBeautifier.format(endTime.getTime()).split(" ")[1]);
     }

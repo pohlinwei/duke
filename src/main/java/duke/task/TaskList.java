@@ -16,9 +16,7 @@ public class TaskList {
     private List<Task> tasks = new ArrayList<>();
     private Optional<Task> lastEditedTask = Optional.empty();
 
-    private TaskList() {
-
-    }
+    private TaskList() {}
 
     /**
      * Returns an instance of <code>TaskList</code>.

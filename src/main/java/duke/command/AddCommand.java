@@ -4,7 +4,6 @@ import java.util.Optional;
 
 import duke.task.Task;
 import duke.task.TaskList;
-
 import duke.util.Storage;
 import duke.util.Ui;
 
@@ -21,6 +20,7 @@ public class AddCommand implements Command {
      */
     public AddCommand(Task task) {
         this.task = task;
+        assert this.task != null : "Empty task should not be added";
     }
 
     /**

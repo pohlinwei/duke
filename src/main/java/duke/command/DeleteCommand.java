@@ -21,8 +21,7 @@ public class DeleteCommand implements Command {
     public DeleteCommand(int taskNum) {
         this.taskNum = taskNum;
     }
-
-    // todo handle exceptions
+    
     /**
      * Executes this command by removing task with <code>taskNum</code> from <code>taskList</code>.
      * Informs user that command has been executed.

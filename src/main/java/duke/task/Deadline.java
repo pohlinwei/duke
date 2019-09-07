@@ -31,7 +31,7 @@ public class Deadline extends Task {
      * @return a summarised version of <code>this</code> task
      */
     public String getInfo() {
-        return String.format("D | %d | %s | %s", done ? 1 : 0, taskName, details);
+        return String.format("D | %d | %s | %s", isDone ? 1 : 0, taskName, details);
     }
 
     /**
@@ -53,7 +53,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[D][%s] %s (by: %s)", done ? SYMBOL_COMPLETE : SYMBOL_INCOMPLETE,
+        return String.format("[D][%s] %s (by: %s)", isDone ? SYMBOL_COMPLETE : SYMBOL_INCOMPLETE,
                 taskName, dateBeautifier.format(dateTime.getTime()));
     }
 

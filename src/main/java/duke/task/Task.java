@@ -17,7 +17,7 @@ public abstract class Task {
 
 
     protected String taskName;
-    protected boolean done = false; // by default it's false
+    protected boolean isDone = false; // by default it's false
 
     /**
      * Returns a task with <code>taskName</code>.
@@ -74,7 +74,7 @@ public abstract class Task {
             c.setTime(date);
             c.set(Calendar.YEAR, CURRENT_YEAR);
         } catch (ParseException e) {
-            // won't fall into this block since this function is only used when str is valid
+            assert false : "Date format was mistakenly accepted as correct";
         } finally {
             return c;
         }
@@ -84,7 +84,8 @@ public abstract class Task {
      * Marks <code>this</code> as done.
      */
     public void setDone() {
-        done = true;
+        isDone = true;
+        assert isDone : "Task's isDone should be true";
     }
 
     /**
@@ -93,7 +94,7 @@ public abstract class Task {
      * @return <code>true</code> if <code>this</code> is done; otherwise, it returns <code>false</code>
      */
     public boolean isDone() {
-        return done;
+        return isDone;
     }
 }
 

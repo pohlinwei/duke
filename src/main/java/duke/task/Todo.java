@@ -19,7 +19,7 @@ public class Todo extends Task {
      * @return a summarised version of <code>this</code> task
      */
     public String getInfo() {
-        return String.format("T | %d | %s", done ? 1 : 0, taskName);
+        return String.format("T | %d | %s", isDone ? 1 : 0, taskName);
     }
 
     /**
@@ -40,7 +40,7 @@ public class Todo extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[T][%s] %s", done ? SYMBOL_COMPLETE : SYMBOL_INCOMPLETE, taskName);
+        return String.format("[T][%s] %s", isDone ? SYMBOL_COMPLETE : SYMBOL_INCOMPLETE, taskName);
     }
 
     /**

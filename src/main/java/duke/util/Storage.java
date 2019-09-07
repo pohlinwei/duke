@@ -32,8 +32,11 @@ public class Storage {
                         .mapToObj(i -> parsedPath[i])
                         .reduce("", (prev, curr) -> prev + curr + "/");
                 Files.createDirectories(Paths.get(dirPath));
-                // create file
                 Files.createFile(Paths.get(path));
+            } else {
+                if (!Files.isReadable(Paths.get(path)) || !Files.isWritable(Paths.get(path))) {
+                    throw new LoadException();
+                }
             }
         } catch (IOException e) {
             throw new LoadException();
@@ -64,7 +67,7 @@ public class Storage {
             w.write(task.getInfo() + System.lineSeparator());
             w.close();
         } catch (IOException e) {
-            // ignore since we are sure that we can read and write to file
+            assert false : "File should be writeable";
         }
     }
 
@@ -85,7 +88,7 @@ public class Storage {
             });
             w.close();
         } catch (IOException e) {
-            // we are certain that we are able to read and write to file
+            assert false : "File should be readable and writeable";
         }
     }
 

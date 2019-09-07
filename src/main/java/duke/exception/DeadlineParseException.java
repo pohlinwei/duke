@@ -12,7 +12,9 @@ public class DeadlineParseException extends ParseException {
 
     @Override
     public String getMessage() {
-        return String.format(super.getMessage() + ". Please input deadline info in the following format:\n\n"
+        String specificErrMsg = super.getMessage();
+        assert specificErrMsg != "" : "Specific error message for DeadlineParseException should be present";
+        return String.format(specificErrMsg + ". Please input deadline info in the following format:\n\n"
                 + "deadline essay /by 20/1 1800");
     }
 }
