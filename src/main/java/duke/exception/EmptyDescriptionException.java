@@ -19,7 +19,7 @@ public class EmptyDescriptionException extends Exception {
         } else if (task.equals("deadline")){
             type = "a deadline";
         } else {
-            assert false : "Task type should be an event, todo or deadline";
+            assert false : "Task type should be an event/todo/deadline";
         }
     }
 
