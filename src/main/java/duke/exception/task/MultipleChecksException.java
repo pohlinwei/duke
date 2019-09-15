@@ -1,10 +1,12 @@
-package duke.exception;
+package duke.exception.task;
+
+import duke.exception.DukeException;
 
 /**
  * This indicates that the task with <code>taskNum</code> has previously been marked as done.
  */
 
-public class MultipleChecksException extends Exception {
+public class MultipleChecksException extends DukeException {
     private int taskNum;
 
     /**

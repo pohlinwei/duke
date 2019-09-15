@@ -1,15 +1,13 @@
-package duke.command;
+package duke.command.task;
 
-import duke.task.TaskList;
-
+import duke.task.TaskManager;
 import duke.util.storage.OptionalStorage;
 import duke.util.ui.Ui;
 
 /**
  * This class allows a task to be deleted from a <code>TaskList</code> object.
  */
-public class DeleteCommand implements Command {
-    private final static boolean IS_EXIT = false;
+public class DeleteCommand extends TaskCommand {
     int taskNum;
 
     /**
@@ -25,16 +23,12 @@ public class DeleteCommand implements Command {
      * Executes this command by removing task with <code>taskNum</code> from <code>taskList</code>.
      * Informs user that command has been executed.
      *
-     * @param taskList task list which the task should be added to
+     * @param taskManager task list which the task should be added to
      * @param storage storage which stores all tasks on the local hard disk, if any
      */
-    public String execute(TaskList taskList, OptionalStorage storage) throws IndexOutOfBoundsException {
-        taskList.deleteTask(taskNum);
-        storage.update(taskList.getTasksAsStream());
-        return Ui.informDeleted(taskList.getLastEditedTask(), taskList.getSize());
-    }
-
-    public boolean isExit() {
-        return IS_EXIT;
+    public String execute(TaskManager taskManager, OptionalStorage storage) throws IndexOutOfBoundsException {
+        taskManager.deleteTask(taskNum);
+        storage.update(taskManager.getTasksAsStream());
+        return Ui.informDeleted(taskManager.getLastEditedTask(), taskManager.getSize());
     }
 }

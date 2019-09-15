@@ -1,6 +1,8 @@
-package duke.exception;
+package duke.exception.task;
 
-public class NoStorageChangeException extends Exception {
+import duke.exception.DukeException;
+
+public class NoStorageChangeException extends DukeException {
     String path;
 
     public NoStorageChangeException(String path) {

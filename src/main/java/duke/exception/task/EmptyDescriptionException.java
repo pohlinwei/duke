@@ -1,9 +1,11 @@
-package duke.exception;
+package duke.exception.task;
+
+import duke.exception.DukeParseException;
 
 /**
  * This indicates that the user has indicated an empty description when trying to add a task.
  */
-public class EmptyDescriptionException extends Exception {
+public class EmptyDescriptionException extends DukeParseException {
     private String type;
 
     /**

@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.stream.Stream;
 import java.util.stream.IntStream;
 
-import duke.task.Task;
+import duke.Input;
 import duke.exception.LoadException;
 
 /**
@@ -73,12 +73,12 @@ class Storage {
     /**
      * Adds <code>task</code> to file found at <code>this</code> path.
      *
-     * @param task task to be added to file
+     * @param input task to be added to file
      */
-    void addTask(Task task) {
+    void add(Input input) {
         try {
             BufferedWriter w = new BufferedWriter(new FileWriter(path, true));
-            w.write(task.getInfo() + System.lineSeparator());
+            w.write(input.getInfo() + System.lineSeparator());
             w.close();
         } catch (IOException e) {
             assert false : "File should be writeable";
@@ -88,14 +88,14 @@ class Storage {
     /**
      * Rewrites the entire file to save updates made to <code>taskList</code>.
      *
-     * @param tasks summarised string representation of all tasks found in <code>taskList</code>
+     * @param inputs summarised string representation of all tasks found in <code>taskList</code>
      */
-    void update(Stream<Task> tasks) {
+    void update(Stream<? extends Input> inputs) {
         try {
             BufferedWriter w = new BufferedWriter(new FileWriter(path));
-            tasks.forEach(task -> {
+            inputs.forEach(input -> {
                 try {
-                    w.write(task.getInfo() + System.lineSeparator());
+                    w.write(input.getInfo() + System.lineSeparator());
                 } catch (IOException e) {
                     System.err.println("Unable to update storage: " + e.getMessage());
                 }

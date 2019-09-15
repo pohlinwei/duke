@@ -3,7 +3,7 @@ package duke.exception;
 /**
  * This indicates that an error was encountered when trying to parse user's command.
  */
-public class InvalidCommandException extends UnsupportedOperationException {
+public class InvalidCommandException extends DukeException {
     public InvalidCommandException() {
         super();
     }
