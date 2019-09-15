@@ -1,9 +1,9 @@
 package duke.util.storage;
 
+import duke.Input;
+import duke.Manager;
 import duke.exception.LoadException;
-import duke.exception.NoStorageChangeException;
-import duke.task.Task;
-import duke.task.TaskList;
+import duke.exception.task.NoStorageChangeException;
 
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -17,21 +17,21 @@ public class OptionalStorage {
 
     public OptionalStorage() {}
 
-    public void addTask(Task task) {
-        storage.ifPresent(s -> s.addTask(task));
+    public void add(Input input) {
+        storage.ifPresent(s -> s.add(input));
     }
 
-    public void update(Stream<Task> tasks) {
-        storage.ifPresent(s -> s.update(tasks));
+    public void update(Stream<? extends Input> inputs) {
+        storage.ifPresent(s -> s.update(inputs));
     }
 
-    public void load(TaskList taskList) {
-        storage.ifPresent(s -> taskList.addPreviousTasks(s.load()));
+    public void load(Manager manager) {
+        storage.ifPresent(s -> manager.addPrevious(s.load()));
     }
 
-    public void updateTaskList(TaskList taskList) {
-        taskList.removeAll();
-        load(taskList);
+    public void updateTaskList(Manager manager) {
+        manager.removeAll();
+        load(manager);
     }
 
     public void update(String path) throws NoStorageChangeException {

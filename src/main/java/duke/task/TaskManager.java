@@ -7,25 +7,22 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 import java.util.Optional;
 
-import duke.exception.MultipleChecksException;
+import duke.Manager;
+import duke.exception.task.MultipleChecksException;
 
 /**
  * This class returns a task list which allows us to read, add, delete and update the status of tasks.
  */
-public class TaskList {
+public class TaskManager implements Manager {
     private List<Task> tasks = new ArrayList<>();
     private Optional<Task> lastEditedTask = Optional.empty();
-
-    private TaskList() {}
 
     /**
      * Returns an instance of <code>TaskList</code>.
      *
      * @return an instance of <code>TaskList</code> that contains no <code>task</code>s
      */
-    public static TaskList instanceOf() {
-        return new TaskList();
-    }
+    public TaskManager() {}
 
     /**
      * Adds tasks that are retrieved from a <code>Stream</code> of strings representing a
@@ -35,7 +32,7 @@ public class TaskList {
      *
      * @param previousTasks <code>Stream</code> of summarised string representation of <code>task</code>s
      */
-    public void addPreviousTasks(Stream<String> previousTasks) {
+    public void addPrevious(Stream<String> previousTasks) {
         tasks.addAll(toTaskList(previousTasks));
     }
 

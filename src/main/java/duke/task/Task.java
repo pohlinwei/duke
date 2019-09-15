@@ -1,9 +1,11 @@
 package duke.task;
 
+import duke.Input;
+
 /**
  * An <code>abstract</code> class representing a task which has name and status (whether it is done) fields.
  */
-public abstract class Task {
+public abstract class Task extends Input {
     protected static final String SYMBOL_COMPLETE = "\u2714";
     protected static final String SYMBOL_INCOMPLETE = "\u2718";
 

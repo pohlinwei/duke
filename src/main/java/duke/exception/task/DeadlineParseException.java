@@ -1,13 +1,13 @@
-package duke.exception;
+package duke.exception.task;
 
-import java.text.ParseException;
+import duke.exception.DukeParseException;
 
 /**
  * This indicates that an error was encountered when trying to parse user's deadline input.
  */
-public class DeadlineParseException extends ParseException {
+public class DeadlineParseException extends DukeParseException {
     public DeadlineParseException(String str) {
-        super(str, 0);
+        super(str);
     }
 
     @Override

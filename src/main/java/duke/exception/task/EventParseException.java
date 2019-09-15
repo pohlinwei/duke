@@ -1,14 +1,14 @@
-package duke.exception;
+package duke.exception.task;
 
-import java.text.ParseException;
+import duke.exception.DukeParseException;
 
 /**
  * This indicates that an error was encountered when trying to parse user's event input.
  */
-public class EventParseException extends ParseException {
+public class EventParseException extends DukeParseException {
 
     public EventParseException(String string) {
-        super(string, 0);
+        super(string);
     }
 
     @Override

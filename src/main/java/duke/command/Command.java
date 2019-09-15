@@ -1,7 +1,8 @@
 package duke.command;
 
 
-import duke.task.TaskList;
+import duke.Manager;
+import duke.exception.DukeException;
 import duke.util.storage.OptionalStorage;
 
 /**
@@ -11,11 +12,11 @@ public interface Command {
     /**
      * Executes the intended command.
      *
-     * @param taskList task list which <code>this</code> task should be added to
+     * @param manager task list which <code>this</code> task should be added to
      * @param storage storage which stores all tasks on the local hard disk, if any
      * @throws Exception if command cannot be executed
      */
-    public String execute(TaskList taskList, OptionalStorage storage) throws Exception;
+    public String execute(Manager manager, OptionalStorage storage) throws DukeException;
 
-    public boolean isExit();
+    public CommandType getCommandType();
 }

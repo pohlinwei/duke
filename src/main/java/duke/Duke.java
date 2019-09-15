@@ -3,10 +3,13 @@ package duke;
 import java.util.Optional;
 
 import duke.command.Command;
+import duke.command.CommandType;
+import duke.exception.DukeException;
 import duke.exception.LoadException;
-import duke.task.TaskList;
+import duke.task.TaskManager;
+import duke.trivia.TriviaManager;
 import duke.util.storage.OptionalStorage;
-import duke.util.Parser;
+import duke.parser.Parser;
 import duke.util.ui.Ui;
 import duke.util.Response;
 
@@ -15,10 +18,16 @@ import duke.util.Response;
  */
 
 public class Duke {
-    private static String entries = "../data/entries.txt";
-    private TaskList taskList = TaskList.instanceOf();
-    private OptionalStorage storage;
-    private boolean hasStorage = true;
+    // for tasks
+    private static String taskFile = "../data/tasks.txt";
+    private TaskManager taskManager = new TaskManager();
+    private OptionalStorage taskStorage;
+    private boolean hasTaskStorage = true;
+
+    // for trivia
+    private static String triviaFile = "../data/trivia.txt";
+    private TriviaManager triviaManager = new TriviaManager();
+    private OptionalStorage triviaStorage;
 
     /**
      * Returns Duke, a task manager.
@@ -26,12 +35,24 @@ public class Duke {
      */
     public Duke() {
         try {
-            storage = new OptionalStorage(entries);
+            taskStorage = new OptionalStorage(taskFile);
+            taskStorage.load(taskManager);
         } catch (LoadException e) {
-            storage = new OptionalStorage();
-            this.hasStorage = false;
+            taskStorage = new OptionalStorage();
+            this.hasTaskStorage = false;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            taskStorage = new OptionalStorage();
+            this.hasTaskStorage = false;
         }
-        storage.load(taskList);
+
+        try {
+            triviaStorage = new OptionalStorage(triviaFile);
+            triviaStorage.load(triviaManager);
+        } catch (LoadException e) {
+            triviaStorage = new OptionalStorage();
+        } catch (ArrayIndexOutOfBoundsException e) {
+            triviaStorage = new OptionalStorage();
+        }
     }
 
     /**
@@ -48,11 +69,21 @@ public class Duke {
 
         try {
             command = Parser.parse(input);
-            String message = command.get().execute(taskList, storage);
-            boolean isExit = command.get().isExit();
-            response = new Response(message, isExit);
-        } catch (Exception e) {
-            response = new Response(Ui.showError(e), false);
+            CommandType commandType = command.get().getCommandType();
+            String message = "";
+            if (commandType.equals(CommandType.TASK)) {
+                message = command.get().execute(taskManager, taskStorage);
+            } else if (commandType.equals(CommandType.TRIVIA)) {
+                message = command.get().execute(triviaManager, triviaStorage);
+            } else if (commandType.equals(CommandType.BYE)) {
+                message = command.get().execute(taskManager, taskStorage);
+            } else if (commandType.equals(CommandType.STORE)) {
+                message = command.get().execute(taskManager, taskStorage);
+            }
+            assert !(message.equals("")) : "Message to user should not be empty";
+            response = new Response(message, commandType);
+        } catch (DukeException e) {
+            response = new Response(Ui.showError(e), CommandType.INVALID);
         } finally {
             return response;
         }
@@ -70,7 +101,7 @@ public class Duke {
      * Returns whether tasks can be saved to a local file.
      * @ return whether tasks can be saved to a local file
      */
-    public boolean hasStorage() {
-        return hasStorage;
+    public boolean hasTaskStorage() {
+        return hasTaskStorage;
     }
 }

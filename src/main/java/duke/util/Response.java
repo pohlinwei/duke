@@ -1,23 +1,29 @@
 package duke.util;
 
+import duke.command.CommandType;
+
 public class Response {
     private String message;
-    private boolean isExit;
+    private CommandType commandType;
 
-    public Response(String message, boolean isExit) {
+    public Response(String message, CommandType commandType) {
         this.message = message;
-        this.isExit = isExit;
+        this.commandType = commandType;
     }
 
     public Response() {
-        new Response("", false);
+        new Response("", CommandType.INVALID);
     }
 
-    public boolean isExit() {
-        return isExit;
+    public CommandType getCommandType() {
+        return commandType;
     }
 
     public String getMessage() {
         return message;
+    }
+
+    public boolean isExit() {
+        return commandType.equals(CommandType.BYE);
     }
 }
