@@ -10,13 +10,13 @@ import duke.util.storage.OptionalStorage;
 import duke.util.ui.Ui;
 
 /**
- * This class allows users to search for tasks that contain an expression.
+ * This class allows tasks that contain a specified expression to be searched.
  */
 public class FindCommand extends TaskCommand {
     String query;
 
     /**
-     * Returns a command that allows the user to look for tasks with the expression <code>query</code>.
+     * Returns a command that allows the tasks with the expression <code>query</code> to be searched.
      *
      * @param query expression to be searched for
      */
@@ -27,7 +27,7 @@ public class FindCommand extends TaskCommand {
     /**
      * Finds tasks that contain the expression <code>query</code>. This method is not case-sensitive.
      *
-     * @param taskManager task manager that contains user's tasks
+     * @param taskManager task manager that contains tasks
      * @param storage storage which stores all tasks on the local hard disk, if any
      * @return tasks that contain <code>query</code>
      */

@@ -6,17 +6,22 @@ import duke.exception.DukeException;
 import duke.util.storage.OptionalStorage;
 
 /**
- * This allows commands, as indicated by a user's input, to be executed.
+ * This allows commands, as indicated by the input, to be executed.
  */
 public interface Command {
     /**
      * Executes the intended command.
      *
-     * @param manager task list which <code>this</code> task should be added to
-     * @param storage storage which stores all tasks on the local hard disk, if any
-     * @throws Exception if command cannot be executed
+     * @param manager manager containing all inputs
+     * @param storage storage which stores all inputs on the local hard disk, if any
+     * @throws DukeException if command cannot be executed
      */
-    public String execute(Manager manager, OptionalStorage storage) throws DukeException;
+    String execute(Manager manager, OptionalStorage storage) throws DukeException;
 
-    public CommandType getCommandType();
+    /**
+     * Gets command type of <code>this</code>.
+     *
+     * @return command type of <code>this</code> command
+     */
+    CommandType getCommandType();
 }

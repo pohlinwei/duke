@@ -23,11 +23,11 @@ public class AddCommand extends TaskCommand {
 
     /**
      * Adds <code>this</code> task to <code>taskManager</code> and stores <code>this</code> in <code>storage</code>.
-     * Informs user that command has been executed when completed.
+     * Informs that command has been executed when completed.
      *
      * @param taskManager task manager which <code>this</code> task should be added to
      * @param storage storage which stores all tasks on the local hard disk, if any
-     * @return string informing user that <code>task</code> has been added
+     * @return string indicating that <code>task</code> has been added
      */
     public String execute(TaskManager taskManager, OptionalStorage storage) {
         taskManager.addTask(task);

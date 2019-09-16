@@ -20,11 +20,11 @@ public class DeleteCommand extends TaskCommand {
     }
     
     /**
-     * Removes task with <code>taskNum</code> from <code>taskManager</code>. Informs user that command has been executed.
+     * Removes task with <code>taskNum</code> from <code>taskManager</code>. Informs that command has been executed.
      *
      * @param taskManager task manager which the task should be added to
      * @param storage storage which stores all tasks on the local hard disk, if any
-     * @return string informing the user whether the task has been successfully deleted
+     * @return string indicating whether the task has been successfully deleted
      */
     public String execute(TaskManager taskManager, OptionalStorage storage) throws IndexOutOfBoundsException {
         taskManager.deleteTask(taskNum);

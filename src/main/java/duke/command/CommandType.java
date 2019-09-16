@@ -1,7 +1,7 @@
 package duke.command;
 
 /**
- * A list of valid command.
+ * General types of valid command.
  */
 
 public enum CommandType {
