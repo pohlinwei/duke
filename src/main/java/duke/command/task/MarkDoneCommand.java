@@ -25,8 +25,9 @@ public class MarkDoneCommand extends TaskCommand {
      * Executes this command by marking <code>task</code> with <code>taskNum</code> as done.
      * Informs user that command has been executed.
      *
-     * @param taskManager task list which contains <code>this</code> task
+     * @param taskManager task manager which contains <code>this</code> task
      * @param storage storage which stores all tasks on the local hard disk, if any
+     * @return string informing the user whether the task with <code>taskNum</code> has been marked
      */
     public String execute(TaskManager taskManager, OptionalStorage storage) throws MultipleChecksException,
         IndexOutOfBoundsException {

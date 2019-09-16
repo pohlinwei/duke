@@ -1,7 +1,7 @@
 package duke.command.task;
 
 /**
- * A list of valid command.
+ * A list of valid task commands.
  */
 
 public enum TaskCmdType {

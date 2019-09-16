@@ -6,13 +6,13 @@ import duke.util.storage.OptionalStorage;
 import duke.util.ui.Ui;
 
 /**
- * This class allows a new task to be added to a <code>TaskList</code> object.
+ * This class allows a new task to be added to a <code>TaskManager</code> object.
  */
 public class AddCommand extends TaskCommand {
     Task task;
 
     /**
-     * Returns a command which allows us to add a task to <code>taskList</code>.
+     * Returns a command which allows us to add a task.
      *
      * @param task task to be added
      */
@@ -22,11 +22,12 @@ public class AddCommand extends TaskCommand {
     }
 
     /**
-     * Executes this command by adding <code>this</code> task to <code>taskList</code>.
-     * Informs user that command has been executed.
+     * Adds <code>this</code> task to <code>taskManager</code> and stores <code>this</code> in <code>storage</code>.
+     * Informs user that command has been executed when completed.
      *
-     * @param taskManager task list which <code>this</code> task should be added to
+     * @param taskManager task manager which <code>this</code> task should be added to
      * @param storage storage which stores all tasks on the local hard disk, if any
+     * @return string informing user that <code>task</code> has been added
      */
     public String execute(TaskManager taskManager, OptionalStorage storage) {
         taskManager.addTask(task);

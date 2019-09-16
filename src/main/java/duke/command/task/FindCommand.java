@@ -9,13 +9,28 @@ import duke.task.TaskManager;
 import duke.util.storage.OptionalStorage;
 import duke.util.ui.Ui;
 
+/**
+ * This class allows users to search for tasks that contain an expression.
+ */
 public class FindCommand extends TaskCommand {
     String query;
 
+    /**
+     * Returns a command that allows the user to look for tasks with the expression <code>query</code>.
+     *
+     * @param query expression to be searched for
+     */
     public FindCommand(String query) {
         this.query = query;
     }
 
+    /**
+     * Finds tasks that contain the expression <code>query</code>. This method is not case-sensitive.
+     *
+     * @param taskManager task manager that contains user's tasks
+     * @param storage storage which stores all tasks on the local hard disk, if any
+     * @return tasks that contain <code>query</code>
+     */
     public String execute(TaskManager taskManager, OptionalStorage storage) {
         List<String> results = taskManager.getTasksAsStream()
                 .map(t -> t.toString())
@@ -27,7 +42,14 @@ public class FindCommand extends TaskCommand {
         return Ui.showSearchResults(resultString);
     }
 
-    public boolean containsQuery(String task, String query) {
+    /**
+     * Checks whether <code>task</code> contains <code>query</code>.
+     *
+     * @param task task to be checked
+     * @param query string to be queried from <code>task</code>
+     * @return whether <code>task</code> contains <code>query</code>
+     */
+    private boolean containsQuery(String task, String query) {
         String ignoreCaseTask = task.toLowerCase();
         String ignoreCaseQuery = query.toLowerCase();
         return ignoreCaseTask.contains(ignoreCaseQuery);
