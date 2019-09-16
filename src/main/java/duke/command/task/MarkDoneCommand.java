@@ -13,9 +13,9 @@ public class MarkDoneCommand extends TaskCommand {
     int taskNum;
 
     /**
-     * Returns a command which allows us to add a task to <code>taskList</code>.
+     * Returns a command which allows the (taskNum)th task to be marked as done.
      *
-     * @param taskNum id of <code>task</code> in <code>taskList</code> to be marked as completed
+     * @param taskNum (taskNum)th of task in <code>taskList</code> to be marked as completed
      */
     public MarkDoneCommand(int taskNum) {
         this.taskNum = taskNum;

@@ -12,7 +12,7 @@ public class AddCommand extends TaskCommand {
     Task task;
 
     /**
-     * Returns a command which allows us to add a task.
+     * Returns a command which allows a task to be added.
      *
      * @param task task to be added
      */

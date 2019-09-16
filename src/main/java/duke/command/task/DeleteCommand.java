@@ -12,7 +12,7 @@ public class DeleteCommand extends TaskCommand {
     int taskNum;
 
     /**
-     * Returns a command which allows us to delete a task from <code>taskManager</code>.
+     * Returns a command which allows a task to be deleted from <code>taskManager</code>.
      *
      * @param taskNum index of <code>task</code> to be removed from <code>taskList</code>
      */
