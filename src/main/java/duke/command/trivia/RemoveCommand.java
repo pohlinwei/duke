@@ -1,5 +1,6 @@
 package duke.command.trivia;
 
+import duke.exception.NoSuchInputException;
 import duke.exception.trivia.MissingAnswerException;
 import duke.trivia.TriviaManager;
 import duke.util.storage.OptionalStorage;
@@ -31,7 +32,7 @@ public class RemoveCommand extends TriviaCommand {
      * @throws MissingAnswerException if previously asked question is not answered
      */
     public String execute(TriviaManager triviaManager, OptionalStorage storage) throws
-        IndexOutOfBoundsException, MissingAnswerException {
+        NoSuchInputException, MissingAnswerException {
         isMissingAnswer(triviaManager);
         triviaManager.remove(triviaId);
         storage.update(triviaManager.getTriviasAsStream());

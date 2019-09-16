@@ -1,5 +1,6 @@
 package duke.command.task;
 
+import duke.exception.NoSuchInputException;
 import duke.task.TaskManager;
 import duke.util.storage.OptionalStorage;
 import duke.util.ui.Ui;
@@ -26,7 +27,7 @@ public class DeleteCommand extends TaskCommand {
      * @param storage storage which stores all tasks on the local hard disk, if any
      * @return string indicating whether the task has been successfully deleted
      */
-    public String execute(TaskManager taskManager, OptionalStorage storage) throws IndexOutOfBoundsException {
+    public String execute(TaskManager taskManager, OptionalStorage storage) throws NoSuchInputException {
         taskManager.deleteTask(taskNum);
         storage.update(taskManager.getTasksAsStream());
         return Ui.informDeleted(taskManager.getLastEditedTask(), taskManager.getSize());
