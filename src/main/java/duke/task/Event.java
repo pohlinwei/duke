@@ -14,6 +14,7 @@ public class Event extends Task {
 
     /**
      * Returns an event with a task name, start time and end time.
+     *
      * @param taskName task of name
      * @param details date, start time and end time of event in the format d/M hhmm-hhmm (24h format)
      * @param startTime formatted start time

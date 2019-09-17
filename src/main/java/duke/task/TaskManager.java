@@ -117,6 +117,12 @@ public class TaskManager implements Manager {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Converts a string which represents a task to a <code>Task</code> instance.
+     *
+     * @param taskInfo string which summarises a task
+     * @return task which is represented by the specified string
+     */
     private Task toTask(String taskInfo) {
         return Task.strToTask(taskInfo);
     }
