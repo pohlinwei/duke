@@ -11,7 +11,7 @@ import duke.util.storage.OptionalStorage;
  * An <code>abstract</code> class that represents all task commands.
  */
 abstract class TaskCommand extends Command {
-    private final static CommandType commandType = CommandType.TASK;
+    private static final CommandType commandType = CommandType.TASK;
 
     /**
      * Executes a task command, and updates <code>manager</code> and <code>storage</code>, if necessary.
@@ -33,7 +33,7 @@ abstract class TaskCommand extends Command {
      * @return string which updates user about the result of <code>this</code> execution
      * @throws DukeException if execution is unsuccessful
      */
-    abstract public String execute(TaskManager manager, OptionalStorage storage) throws DukeException;
+    public abstract String execute(TaskManager manager, OptionalStorage storage) throws DukeException;
 
     /**
      * Gets command type of <code>this</code>.

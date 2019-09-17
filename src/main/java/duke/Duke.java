@@ -61,7 +61,7 @@ public class Duke {
      * will be returned instead.
      * @param input command which determines the desired action to take
      * @return if <code>input</code> is a valid command, response message will be returned. If otherwise,
-     * the error message will be returned
+     *     the error message will be returned
      */
     public Response getResponse(String input) {
         Response response = new Response();

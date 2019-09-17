@@ -12,7 +12,7 @@ import duke.util.storage.OptionalStorage;
  * An <code>abstract</code> class that represents all trivia commands.
  */
 abstract class TriviaCommand extends Command {
-    private final static CommandType commandType = CommandType.TRIVIA;
+    private static final CommandType commandType = CommandType.TRIVIA;
 
     /**
      * Executes a task command, and updates <code>manager</code> and <code>storage</code>, if necessary.
@@ -34,7 +34,7 @@ abstract class TriviaCommand extends Command {
      * @return string which updates user about the result of <code>this</code> execution
      * @throws DukeException if execution is unsuccessful
      */
-    abstract public String execute(TriviaManager triviaManager, OptionalStorage storage) throws DukeException;
+    public abstract String execute(TriviaManager triviaManager, OptionalStorage storage) throws DukeException;
 
     protected void isMissingAnswer(TriviaManager triviaManager) throws MissingAnswerException {
         if (triviaManager.hasAsked()) {

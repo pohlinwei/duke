@@ -27,7 +27,9 @@ public class OptionalStorage {
     /**
      * Constructs an optional storage that does not allow inputs to be stored locally.
      */
-    public OptionalStorage() {}
+    public OptionalStorage() {
+
+    }
 
     /**
      * Adds an input to the local file.
@@ -35,14 +37,6 @@ public class OptionalStorage {
      */
     public void add(Input input) {
         storage.ifPresent(s -> s.add(input));
-    }
-
-    /**
-     * Updates storage with the specified inputs.
-     * @param inputs stream of specified inputs
-     */
-    public void update(Stream<? extends Input> inputs) {
-        storage.ifPresent(s -> s.update(inputs));
     }
 
     /**
@@ -64,7 +58,17 @@ public class OptionalStorage {
     }
 
     /**
+     * Updates storage with the specified inputs.
+     *
+     * @param inputs stream of specified inputs
+     */
+    public void update(Stream<? extends Input> inputs) {
+        storage.ifPresent(s -> s.update(inputs));
+    }
+
+    /**
      * Changes the local storage to the specified path.
+     *
      * @param path the specified path
      * @throws NoStorageChangeException if the change is unsuccessful
      */

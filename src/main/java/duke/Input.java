@@ -3,7 +3,7 @@ package duke;
 /**
  * An <code>abstract</code> class that represents a user input that can be stored.
  */
-abstract public class Input {
+public abstract class Input {
     /**
      * Gets a summary of the input as a string.
      *

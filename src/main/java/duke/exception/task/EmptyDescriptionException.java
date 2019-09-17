@@ -19,7 +19,7 @@ public class EmptyDescriptionException extends DukeParseException {
             type = "an event";
         } else if (taskType.equals("todo")) {
             type = "a todo";
-        } else if (taskType.equals("deadline")){
+        } else if (taskType.equals("deadline")) {
             type = "a deadline";
         } else {
             assert false : "Task type should be an event, todo or deadline";

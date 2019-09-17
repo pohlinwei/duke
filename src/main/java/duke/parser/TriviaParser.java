@@ -3,8 +3,15 @@ package duke.parser;
 import java.util.Optional;
 
 import duke.command.Command;
-import duke.command.trivia.*;
-import duke.exception.*;
+import duke.command.trivia.AnswerCommand;
+import duke.command.trivia.AskCommand;
+import duke.command.trivia.CheckCommand;
+import duke.command.trivia.NewCommand;
+import duke.command.trivia.RemoveCommand;
+import duke.command.trivia.ShowCommand;
+import duke.command.trivia.TriviaCmdType;
+import duke.exception.DukeParseException;
+import duke.exception.ExtraArgException;
 import duke.exception.trivia.EmptyQuestionException;
 import duke.exception.trivia.RemoveParseException;
 import duke.exception.trivia.TriviaParseException;
@@ -24,7 +31,7 @@ class TriviaParser {
      * @throws DukeParseException if details of command cannot be parsed successfully
      */
     static Optional<Command> parse(TriviaCmdType triviaCmdType, String details) throws DukeParseException {
-        switch(triviaCmdType) {
+        switch (triviaCmdType) {
         case ASK:
             return Optional.of(parseAsk(details));
         case ANSWER:

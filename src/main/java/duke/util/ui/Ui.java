@@ -48,7 +48,7 @@ public class Ui {
      * @return list of all tasks
      */
     public static String showList(String tasksAsString) {
-       return listIntro + "\n" + tasksAsString;
+        return listIntro + "\n" + tasksAsString;
     }
 
     /**
@@ -85,7 +85,7 @@ public class Ui {
     public static String informAdded(Task addedTask, int tasksNum) {
         String response = String.format("Got it. I've added this task:\n%s\n\n"
                         + "Now you have %d tasks in the list.\n", addedTask, tasksNum);
-       return response;
+        return response;
     }
 
     /**

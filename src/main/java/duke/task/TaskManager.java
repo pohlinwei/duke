@@ -12,18 +12,18 @@ import duke.exception.NoSuchInputException;
 import duke.exception.task.MultipleChecksException;
 
 /**
- * This class returns a task list which allows us to read, add, delete and update the status of tasks.
+ * This class returns a task manager which allows us to read, add, delete and update the status of tasks.
  */
 public class TaskManager implements Manager {
     private List<Task> tasks = new ArrayList<>();
     private Optional<Task> lastEditedTask = Optional.empty();
 
     /**
-     * Returns an instance of <code>TaskList</code>.
-     *
-     * @return an instance of <code>TaskList</code> that contains no <code>task</code>s
+     * Constructs a <code>TaskManager</code>.
      */
-    public TaskManager() {}
+    public TaskManager() {
+
+    }
 
     /**
      * Adds tasks that are retrieved from a <code>Stream</code> of strings representing a
@@ -52,7 +52,7 @@ public class TaskManager implements Manager {
     }
 
     /**
-     * Deletes task with <code>taskNum</code> in <code>this</code> task list.
+     * Deletes task with <code>taskNum</code> in <code>this</code> task manager.
      *
      * @param taskNum index of task to be deleted
      */
@@ -95,18 +95,18 @@ public class TaskManager implements Manager {
     }
 
     /**
-     * Returns the number of tasks in this instance of <code>TaskList</code>.
+     * Returns the number of tasks in this instance of <code>TaskManager</code>.
      *
-     * @return number of tasks in this instance of <code>TaskList</code>
+     * @return number of tasks in this instance of <code>TaskManager</code>
      */
     public int getSize() {
         return tasks.size();
     }
 
     /**
-     * Returns a <code>Stream</code> which represents every task in this instance of <code>TaskList</code>.
+     * Returns a <code>Stream</code> which represents every task in this instance of <code>TaskManager</code>.
      *
-     * @return <code>Stream</code> which represents every task in this instance of <code>TaskList</code>.
+     * @return <code>Stream</code> which represents every task in this instance of <code>TaskManager</code>
      */
     public Stream<Task> getTasksAsStream() {
         return tasks.stream();

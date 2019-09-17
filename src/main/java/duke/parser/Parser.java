@@ -22,7 +22,9 @@ public class Parser {
     private static final int NUM_ARGS_STORE = 2;
 
     // prevents user from directly creating a parser object
-    private Parser() {}
+    private Parser() {
+
+    }
 
     /**
      * Parses a given input.

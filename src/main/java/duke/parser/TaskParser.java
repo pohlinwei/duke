@@ -1,8 +1,13 @@
 package duke.parser;
 
 import duke.command.Command;
-import duke.command.task.*;
 
+import duke.command.task.AddCommand;
+import duke.command.task.DeleteCommand;
+import duke.command.task.FindCommand;
+import duke.command.task.ListCommand;
+import duke.command.task.MarkDoneCommand;
+import duke.command.task.TaskCmdType;
 import duke.exception.DukeParseException;
 import duke.exception.ExtraArgException;
 import duke.exception.task.DeadlineParseException;
@@ -31,7 +36,9 @@ class TaskParser {
     private static final String SEPARATOR_EVENT = " /at ";
     private static final String SEPARATOR_TIME = "-";
 
-    private TaskParser() {}
+    private TaskParser() {
+
+    }
 
     /**
      * Parses the input for a task command.
@@ -44,7 +51,7 @@ class TaskParser {
     static Optional<Command> parse(TaskCmdType taskCmdType, String details) throws DukeParseException {
         Optional<Command> command;
 
-        switch(taskCmdType) {
+        switch (taskCmdType) {
         case DELETE:
             return Optional.of(parseDelete(details));
         case DONE:

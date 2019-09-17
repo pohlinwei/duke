@@ -4,7 +4,9 @@ package duke.parser;
  * String formatter that removes a specified string and returns the string that begins after the specified string.
  */
 class StringFormatter {
-    private StringFormatter() {}
+    private StringFormatter() {
+
+    }
 
     /**
      * Removes a specified string and returns the string that begins after the specified string.

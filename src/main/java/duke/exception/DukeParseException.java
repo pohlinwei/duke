@@ -17,7 +17,9 @@ public class DukeParseException extends DukeException {
     /**
      * Constructs a DukeParseException without a specified message.
      */
-    public DukeParseException() {}
+    public DukeParseException() {
+
+    }
 
     @Override
     public String getMessage() {
