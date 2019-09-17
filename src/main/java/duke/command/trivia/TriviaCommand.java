@@ -11,7 +11,7 @@ import duke.util.storage.OptionalStorage;
 /**
  * An <code>abstract</code> class that represents all trivia commands.
  */
-abstract class TriviaCommand implements Command {
+abstract class TriviaCommand extends Command {
     private final static CommandType commandType = CommandType.TRIVIA;
 
     /**

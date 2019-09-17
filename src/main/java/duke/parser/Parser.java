@@ -7,8 +7,8 @@ import duke.command.Command;
 import duke.command.CommandType;
 import duke.command.ExitCommand;
 import duke.command.task.TaskCmdType;
-
 import duke.command.trivia.TriviaCmdType;
+
 import duke.exception.DukeParseException;
 import duke.exception.InvalidCommandException;
 import duke.exception.ExtraArgException;
@@ -16,16 +16,24 @@ import duke.exception.ExtraArgException;
 import duke.exception.StoreParseException;
 
 /**
- * This class provides a parser which can be used to parse user input.
+ * Parser to parse input.
  */
 public class Parser {
-    private static final int NUM_ARGS_STORE = 2; //todo change to 3
+    private static final int NUM_ARGS_STORE = 2;
 
     // prevents user from directly creating a parser object
     private Parser() {}
 
+    /**
+     * Parses a given input.
+     *
+     * @param userInput input provided by the user
+     * @return a command that can be executed, if <code>userInput</code> is valid
+     * @throws InvalidCommandException if the command used is not recognised
+     * @throws DukeParseException if the command is correct but the input cannot be parsed
+     */
     public static Optional<Command> parse(String userInput) throws InvalidCommandException, DukeParseException {
-        CommandType cmdType = getCmdType(userInput);
+        CommandType cmdType = Command.getCmdType(userInput);
 
         if (cmdType.equals(CommandType.TASK)) {
             return parseTaskCommand(userInput);
@@ -43,69 +51,13 @@ public class Parser {
         }
     }
 
-    private static CommandType getCmdType(String userInput) {
-        String[] parsedArgs = userInput.split(" ");
-        String userCommand = parsedArgs[0].toUpperCase();
-
-        boolean isTaskCmd = isTaskCmd(userCommand);
-        if (isTaskCmd) {
-            return CommandType.TASK;
-        }
-
-        boolean isExitCmd = isExitCmd(userCommand);
-        if (isExitCmd) {
-            return CommandType.BYE;
-        }
-
-        boolean isStoreCmd = isStoreCmd(userCommand);
-        if (isStoreCmd) {
-            return CommandType.STORE;
-        }
-
-        boolean isTriviaCmd = isTriviaCmd(userCommand);
-        if (isTriviaCmd) {
-            return CommandType.TRIVIA;
-        }
-
-        return CommandType.INVALID;
-    }
-
-    private static boolean isTaskCmd(String userCommand) {
-        try {
-            TaskCmdType.valueOf(userCommand);
-            return true;
-        } catch (IllegalArgumentException e) {
-            return false;
-        }
-    }
-
-    private static boolean isTriviaCmd(String userCommand) {
-        try {
-            TriviaCmdType.valueOf(userCommand);
-            return true;
-        } catch (IllegalArgumentException e) {
-            return false;
-        }
-    }
-
-    private static boolean isExitCmd(String userCommand) {
-        try {
-            CommandType commandType = CommandType.valueOf(userCommand);
-            return commandType.equals(CommandType.BYE);
-        } catch (IllegalArgumentException e) {
-            return false;
-        }
-    }
-
-    private static boolean isStoreCmd(String userCommand) {
-        try {
-            CommandType commandType = CommandType.valueOf(userCommand);
-            return commandType.equals(CommandType.STORE);
-        } catch (IllegalArgumentException e) {
-            return false;
-        }
-    }
-
+    /**
+     * Parses task command.
+     *
+     * @param userInput input from user
+     * @return task command, if parsing is successful
+     * @throws DukeParseException if input is unsuccessfully parsed
+     */
     private static Optional<Command> parseTaskCommand(String userInput) throws DukeParseException {
         String userCmdString = userInput.split(" ")[0];
         TaskCmdType userCommand = TaskCmdType.valueOf(userCmdString.toUpperCase());
@@ -113,6 +65,13 @@ public class Parser {
         return TaskParser.parse(userCommand, details);
     }
 
+    /**
+     * Parses trivia command.
+     *
+     * @param userInput input from user
+     * @return trivia command, if parsing is successful
+     * @throws DukeParseException if input is unsuccessfully parsed
+     */
     private static Optional<Command> parseTriviaCommand(String userInput) throws DukeParseException {
         String userCmdString = userInput.split(" ")[0];
         TriviaCmdType userCommand = TriviaCmdType.valueOf(userCmdString.toUpperCase());
@@ -120,6 +79,13 @@ public class Parser {
         return TriviaParser.parse(userCommand, details);
     }
 
+    /**
+     * Parses exit command.
+     *
+     * @param userInput input from user
+     * @return exit command, if parsing is successful
+     * @throws ExtraArgException if too many arguments are found
+     */
     private static Optional<Command> parseByeCommand(String userInput) throws ExtraArgException {
         String[] userCmdString = userInput.split(" ");
         boolean hasExtraArg = userCmdString.length > 1;
@@ -129,6 +95,13 @@ public class Parser {
         return Optional.of(new ExitCommand());
     }
 
+    /**
+     * Parses store command.
+     *
+     * @param userInput input from user
+     * @return store command, if parsing is successful
+     * @throws StoreParseException if input is unsuccessfully parsed
+     */
     private static Optional<Command> parseStoreCommand(String userInput) throws StoreParseException {
         String[] parsedArgs = userInput.split(" ");
         if (parsedArgs.length != NUM_ARGS_STORE) {
@@ -138,25 +111,4 @@ public class Parser {
 
         return Optional.of(new ChangeStorageCommand(details));
     }
-
-    /**
-     * Returns an <code>Optional</code> value. If <code>command</code> can be successfully parsed,
-     * the result will contain the requested command; otherwise, it will be <code>empty</code>.
-     *
-     * <p>Command can be executed by using the <code>execute</code> method.
-     *
-     * @param command user input
-     * @return <code>Optional</code>command as specified by user, if parsing is successful; otherwise it is empty
-     */
-
-
-    /**
-     * Parses <code>taskDetails</code> of tasks and creates a new object. The object will be either a
-     * deadline, event or todo, as determined by <code>taskType</code>.
-     *
-     * @param taskType command which indicates type of task
-     * @param taskDetails name, date and time of task
-     * @return task with properties that are determined by command
-     * @throws ParseException if <code>taskDetails</code> is in the incorrect format
-     */
 }

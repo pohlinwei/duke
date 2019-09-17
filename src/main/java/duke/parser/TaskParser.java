@@ -3,9 +3,13 @@ package duke.parser;
 import duke.command.Command;
 import duke.command.task.*;
 
-import duke.exception.*;
-
-import duke.exception.task.*;
+import duke.exception.DukeParseException;
+import duke.exception.ExtraArgException;
+import duke.exception.task.DeadlineParseException;
+import duke.exception.task.DeleteParseException;
+import duke.exception.task.EmptyDescriptionException;
+import duke.exception.task.EventParseException;
+import duke.exception.task.MarkDoneParseException;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
@@ -16,6 +20,9 @@ import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Optional;
 
+/**
+ * Task parser parses input for task commands.
+ */
 class TaskParser {
     private static final int NUM_ARG_DEADLINE = 2;
     private static final int NUM_ARG_EVENT = 2;
@@ -26,6 +33,14 @@ class TaskParser {
 
     private TaskParser() {}
 
+    /**
+     * Parses the input for a task command.
+     *
+     * @param taskCmdType type of task command
+     * @param details details of command
+     * @return command that allows the specified <code>taskCmdType</code> to be executed, if parsing is successful
+     * @throws DukeParseException if details of command cannot be parsed successfully
+     */
     static Optional<Command> parse(TaskCmdType taskCmdType, String details) throws DukeParseException {
         Optional<Command> command;
 
@@ -58,6 +73,13 @@ class TaskParser {
         return command;
     }
 
+    /**
+     * Parses a delete command.
+     *
+     * @param details details of delete command
+     * @return delete command
+     * @throws DeleteParseException if parsing of details is unsuccessful
+     */
     private static Command parseDelete(String details) throws DeleteParseException {
         try {
             int taskId = Integer.parseInt(details) - 1;
@@ -67,6 +89,13 @@ class TaskParser {
         }
     }
 
+    /**
+     * Parses a mark done command.
+     *
+     * @param details details of mark done command
+     * @return mark done command
+     * @throws MarkDoneParseException if parsing of details is unsuccessful
+     */
     private static Command parseDone(String details) throws MarkDoneParseException {
         try {
             int taskId = Integer.parseInt(details) - 1;
@@ -76,7 +105,13 @@ class TaskParser {
         }
     }
 
-
+    /**
+     * Parses a list command.
+     *
+     * @param details details of list command, which should be an empty string
+     * @return list command
+     * @throws ExtraArgException if details contain extra arguments
+     */
     private static Command parseList(String details) throws ExtraArgException {
         if (!details.equals("")) {
             throw new ExtraArgException("List command has extra argument. To list tasks, just type 'list'.");
@@ -85,10 +120,23 @@ class TaskParser {
         return new ListCommand();
     }
 
+    /**
+     * Parses a find command.
+     *
+     * @param details details of find command
+     * @return find command
+     */
     private static Command parseFind(String details) {
         return new FindCommand(details);
     }
 
+    /**
+     * Parses a deadline command.
+     *
+     * @param details details of deadline command
+     * @return delete command
+     * @throws DukeParseException if details cannot be parsed successfully
+     */
     private static Task parseDeadline(String details) throws DukeParseException {
         // required format: <taskDetails> /by <day/Month HH:mm>
         if (details.equals("")) {
@@ -117,6 +165,13 @@ class TaskParser {
         }
     }
 
+    /**
+     * Parses an event command.
+     *
+     * @param details details of event command
+     * @return event command
+     * @throws DukeParseException if details cannot be parsed successfully
+     */
     private static Task parseEvent(String details) throws DukeParseException {
         // required format: <taskDetails> /at <day/Month HH:mm-HH:mm>
         if (details.equals("")) {
@@ -156,6 +211,13 @@ class TaskParser {
         }
     }
 
+    /**
+     * Parses a todo command.
+     *
+     * @param details details of todo command
+     * @return todo command
+     * @throws EmptyDescriptionException if details is empty
+     */
     private static Todo parseTodo(String details) throws EmptyDescriptionException {
         if (details.equals("")) {
             throw new EmptyDescriptionException("todo");

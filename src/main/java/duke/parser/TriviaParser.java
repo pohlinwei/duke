@@ -9,9 +9,20 @@ import duke.exception.trivia.EmptyQuestionException;
 import duke.exception.trivia.RemoveParseException;
 import duke.exception.trivia.TriviaParseException;
 
+/**
+ * Trivia parser parses input for trivia command.
+ */
 class TriviaParser {
     private static final String SEPARATOR_QNS_AND_ANS = " /ans ";
 
+    /**
+     * Parses the input for a trivia command.
+     *
+     * @param triviaCmdType type of trivia command
+     * @param details details of command
+     * @return command that allows the specified <code>triviaCmdType</code> to be executed
+     * @throws DukeParseException if details of command cannot be parsed successfully
+     */
     static Optional<Command> parse(TriviaCmdType triviaCmdType, String details) throws DukeParseException {
         switch(triviaCmdType) {
         case ASK:
@@ -32,6 +43,13 @@ class TriviaParser {
         }
     }
 
+    /**
+     * Parses an ask command.
+     *
+     * @param details details of ask command
+     * @return ask command
+     * @throws ExtraArgException if extra arguments are found in details
+     */
     private static Command parseAsk(String details) throws ExtraArgException {
         if (!details.equals("")) {
             throw new ExtraArgException("Ask command has extra argument. "
@@ -41,10 +59,23 @@ class TriviaParser {
         return new AskCommand();
     }
 
+    /**
+     * Parses an answer command.
+     *
+     * @param details details of answer command
+     * @return answer command
+     */
     private static Command parseAnswer(String details) {
         return new AnswerCommand(details);
     }
 
+    /**
+     * Parses a new command.
+     *
+     * @param details details of new command
+     * @return new command
+     * @throws TriviaParseException if parsing of details is unsuccessful
+     */
     private static Command parseNew(String details) throws TriviaParseException {
         boolean hasSeparator = details.contains(SEPARATOR_QNS_AND_ANS);
         if (!hasSeparator) {
@@ -62,6 +93,13 @@ class TriviaParser {
         return new NewCommand(question, answer);
     }
 
+    /**
+     * Parses a check command.
+     *
+     * @param details details of check command
+     * @return check command
+     * @throws EmptyQuestionException if there is no question in <code>triviaManager</code>
+     */
     private static Command parseCheck(String details) throws EmptyQuestionException {
         if (details.equals("")) {
             throw new EmptyQuestionException();
@@ -69,6 +107,13 @@ class TriviaParser {
         return new CheckCommand(details);
     }
 
+    /**
+     * Parses a show command.
+     *
+     * @param details details of show command
+     * @return show command
+     * @throws ExtraArgException if extra arguments are found in details
+     */
     private static Command parseShow(String details) throws ExtraArgException {
         if (!details.equals("")) {
             throw new ExtraArgException("Show command has extra argument. "
@@ -78,6 +123,13 @@ class TriviaParser {
         return new ShowCommand();
     }
 
+    /**
+     * Parses a remove command.
+     *
+     * @param details details of remove command
+     * @return remove command
+     * @throws RemoveParseException if format of details is incorrect
+     */
     private static Command parseRemove(String details) throws RemoveParseException {
         try {
             int triviaId = Integer.parseInt(details);

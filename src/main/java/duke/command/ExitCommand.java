@@ -7,7 +7,7 @@ import duke.util.ui.Ui;
 /**
  * This class returns a command that terminates the program.
  */
-public class ExitCommand implements Command {
+public class ExitCommand extends Command {
     private final static CommandType commandType = CommandType.BYE;
 
     /**

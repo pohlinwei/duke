@@ -10,7 +10,7 @@ import duke.util.storage.OptionalStorage;
 /**
  * An <code>abstract</code> class that represents all task commands.
  */
-abstract class TaskCommand implements Command {
+abstract class TaskCommand extends Command {
     private final static CommandType commandType = CommandType.TASK;
 
     /**

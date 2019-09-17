@@ -10,7 +10,7 @@ import duke.util.ui.Ui;
 /**
  * This class allows the storage file for tasks to be changed.
  */
-public class ChangeStorageCommand implements Command {
+public class ChangeStorageCommand extends Command {
     private final static CommandType commandType = CommandType.STORE;
     protected String path;
 
