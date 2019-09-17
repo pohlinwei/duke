@@ -45,7 +45,7 @@ public class Ui {
     /**
      * Shows user a list of all tasks.
      *
-     * @return list of all tasks
+     * @return list of tasks
      */
     public static String showList(String tasksAsString) {
         return listIntro + "\n" + tasksAsString;
