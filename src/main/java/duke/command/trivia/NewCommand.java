@@ -15,7 +15,7 @@ public class NewCommand extends TriviaCommand {
     private String answer;
 
     /**
-     * Returns a command that allows a new <code>question</code> and <code>answer</code> to be added.
+     * Constructs a command that allows a new <code>question</code> and <code>answer</code> to be added.
      *
      * @param question question to be added
      * @param answer answer for <code>question</code>

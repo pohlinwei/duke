@@ -13,7 +13,7 @@ public class MarkDoneCommand extends TaskCommand {
     int taskNum;
 
     /**
-     * Returns a command which allows the (taskNum)th task to be marked as done.
+     * Constructs a command which allows the (taskNum)th task to be marked as done.
      *
      * @param taskNum (taskNum)th of task in <code>taskList</code> to be marked as completed
      */

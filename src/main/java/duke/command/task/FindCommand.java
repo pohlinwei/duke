@@ -16,7 +16,7 @@ public class FindCommand extends TaskCommand {
     String query;
 
     /**
-     * Returns a command that allows the tasks with the expression <code>query</code> to be searched.
+     * Constructs a command that allows the tasks with the expression <code>query</code> to be searched.
      *
      * @param query expression to be searched for
      */

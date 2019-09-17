@@ -15,7 +15,7 @@ public class ChangeStorageCommand implements Command {
     protected String path;
 
     /**
-     * Returns a command which allows file storing tasks to be changed
+     * Constructs a command which allows file storing tasks to be changed
      *
      * @param path new file location
      */

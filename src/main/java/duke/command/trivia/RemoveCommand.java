@@ -14,7 +14,7 @@ public class RemoveCommand extends TriviaCommand {
     private int triviaId;
 
     /**
-     * Returns a command that allows (triviaId)th question and answer to be removed.
+     * Constructs a command that allows (triviaId)th question and answer to be removed.
      *
      * @param triviaId (triviaId)th in trivia to be removed
      */

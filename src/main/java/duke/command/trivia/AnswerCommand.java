@@ -12,7 +12,7 @@ public class AnswerCommand extends TriviaCommand {
     private String response;
 
     /**
-     * Returns a command which allows the previous question to be answered. The checking process is not
+     * Constructs a command which allows the previous question to be answered. The checking process is not
      * case-sensitive.
      *
      * @param response response to previous question

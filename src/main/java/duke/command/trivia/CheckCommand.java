@@ -13,7 +13,7 @@ public class CheckCommand extends TriviaCommand {
     private String question;
 
     /**
-     * Returns a command that checks the answer of <code>question</code>.
+     * Constructs a command that checks the answer of <code>question</code>.
      *
      * @param question question to be looked up
      */
