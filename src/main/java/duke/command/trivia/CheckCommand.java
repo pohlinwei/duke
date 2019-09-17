@@ -31,7 +31,7 @@ public class CheckCommand extends TriviaCommand {
      * @throws MissingAnswerException if previously asked question is not answered
      */
     public String execute(TriviaManager triviaManager, OptionalStorage storage) throws QuestionNotFoundException,
-            MissingAnswerException {
+        MissingAnswerException {
         isMissingAnswer(triviaManager);
         String answer = triviaManager.findAnswer(question);
         if (answer == null) {
