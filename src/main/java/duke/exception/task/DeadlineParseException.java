@@ -3,9 +3,14 @@ package duke.exception.task;
 import duke.exception.DukeParseException;
 
 /**
- * This indicates that an error was encountered when trying to parse user's deadline input.
+ * Thrown to indicate that an error was encountered when trying to parse deadline input.
  */
 public class DeadlineParseException extends DukeParseException {
+    /**
+     * Constructs a <code>DeadlineParseException</code> with the specified detail message.
+     *
+     * @param str the detail message
+     */
     public DeadlineParseException(String str) {
         super(str);
     }

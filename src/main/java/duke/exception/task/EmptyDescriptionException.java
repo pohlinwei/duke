@@ -3,22 +3,23 @@ package duke.exception.task;
 import duke.exception.DukeParseException;
 
 /**
- * This indicates that the user has indicated an empty description when trying to add a task.
+ * Thrown to indicate that task description is missing.
  */
 public class EmptyDescriptionException extends DukeParseException {
     private String type;
 
     /**
-     * Returns exception indicating that the user has indicated an empty description when trying to add a task.
-     * @param task task which has no description
+     * Constructs an <code>EmptyDescriptionException</code> for a specific type of task.
+     *
+     * @param taskType type of task which has no description
      */
-    public EmptyDescriptionException(String task) {
+    public EmptyDescriptionException(String taskType) {
         super();
-        if (task.equals("event")) {
+        if (taskType.equals("event")) {
             type = "an event";
-        } else if (task.equals("todo")) {
+        } else if (taskType.equals("todo")) {
             type = "a todo";
-        } else if (task.equals("deadline")){
+        } else if (taskType.equals("deadline")){
             type = "a deadline";
         } else {
             assert false : "Task type should be an event, todo or deadline";

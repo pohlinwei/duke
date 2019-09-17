@@ -1,5 +1,8 @@
 package duke.exception;
 
+/**
+ * Thrown to indicate that store input is incorrectly formatted.
+ */
 public class StoreParseException extends DukeParseException {
     @Override
     public String getMessage() {

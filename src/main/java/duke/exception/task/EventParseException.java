@@ -3,10 +3,15 @@ package duke.exception.task;
 import duke.exception.DukeParseException;
 
 /**
- * This indicates that an error was encountered when trying to parse user's event input.
+ * Thrown to indicate that event input is incorrectly formatted.
  */
 public class EventParseException extends DukeParseException {
 
+    /**
+     * Constructs an <code>EventParseException</code> with the specified detail message.
+     *
+     * @param string the detail message
+     */
     public EventParseException(String string) {
         super(string);
     }
