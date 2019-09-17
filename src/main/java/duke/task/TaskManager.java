@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 import java.util.Optional;
 
 import duke.Manager;
+import duke.exception.NoSuchInputException;
 import duke.exception.task.MultipleChecksException;
 
 /**
@@ -55,12 +56,12 @@ public class TaskManager implements Manager {
      *
      * @param taskNum index of task to be deleted
      */
-    public void deleteTask(int taskNum) throws IndexOutOfBoundsException {
+    public void deleteTask(int taskNum) throws NoSuchInputException {
         try {
             lastEditedTask = Optional.of(tasks.get(taskNum));
             tasks.remove(taskNum);
         } catch (IndexOutOfBoundsException e) {
-            throw new IndexOutOfBoundsException("No such task found");
+            throw new NoSuchInputException("No such task found");
         }
     }
 

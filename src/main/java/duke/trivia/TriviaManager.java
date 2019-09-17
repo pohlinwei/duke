@@ -1,6 +1,7 @@
 package duke.trivia;
 
 import duke.Manager;
+import duke.exception.NoSuchInputException;
 
 import java.util.HashMap;
 import java.util.ArrayList;
@@ -64,8 +65,13 @@ public class TriviaManager implements Manager {
         return quickQnsAndAns.get(qnsIgnoreCase);
     }
 
-    public void remove(int triviaId) {
+    public void remove(int triviaId) throws NoSuchInputException {
         int actualId = triviaId - 1;
+
+        if (actualId >= trivias.size()) {
+            throw new NoSuchInputException("No such question/answer.");
+        }
+
         String question = trivias.get(actualId).getQuestion();
         quickQnsAndAns.remove(question);
         Trivia deletedTrivia = trivias.get(actualId);

@@ -32,7 +32,7 @@ public class RemoveCommand extends TriviaCommand {
      * @throws MissingAnswerException if previously asked question is not answered
      */
     public String execute(TriviaManager triviaManager, OptionalStorage storage) throws
-            NoSuchInputException, MissingAnswerException {
+        NoSuchInputException, MissingAnswerException {
         isMissingAnswer(triviaManager);
         triviaManager.remove(triviaId);
         storage.update(triviaManager.getTriviasAsStream());
