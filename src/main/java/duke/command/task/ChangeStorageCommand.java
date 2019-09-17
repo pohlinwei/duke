@@ -40,7 +40,7 @@ public class ChangeStorageCommand extends Command {
 
         try {
             storage.update(path);
-            storage.updateTaskList(manager);
+            storage.updateManager(manager);
             resultString = Ui.informChanged(path);
         } catch (NoStorageChangeException e) {
             resultString = e.getMessage();

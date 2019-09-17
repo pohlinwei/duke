@@ -14,7 +14,7 @@ import duke.util.ui.Ui;
 import duke.util.Response;
 
 /**
- * This class returns Duke, a task manager.
+ * This class returns Duke, a task manager and a trivia manager.
  */
 
 public class Duke {
@@ -30,7 +30,7 @@ public class Duke {
     private OptionalStorage triviaStorage;
 
     /**
-     * Returns Duke, a task manager.
+     * Constructs <code>Duke</code>, a task manager and a trivia manager.
      * @throws LoadException if the specified file for storing user's tasks cannot be accessed, read or written to
      */
     public Duke() {
@@ -98,8 +98,8 @@ public class Duke {
     }
 
     /**
-     * Returns whether tasks can be saved to a local file.
-     * @ return whether tasks can be saved to a local file
+     * Returns <code>true</code> if the the inputs can be stored locally.
+     * @return <code>true</code> if the the inputs can be stored locally
      */
     public boolean hasTaskStorage() {
         return hasTaskStorage;

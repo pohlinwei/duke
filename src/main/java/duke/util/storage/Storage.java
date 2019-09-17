@@ -12,16 +12,16 @@ import duke.Input;
 import duke.exception.LoadException;
 
 /**
- * This class allows us to update and save any changes in <code>taskList</code> to a file.
+ * Storage which contains an actual storage. This allows inputs to be stored locally.
  */
 class Storage {
     private String path;
 
     /**
-     * Returns a storage which we can use to write and read the file stored at <code>path</code>.
+     * Constructs a storage that allows inputs to be stored at a specified path.
      *
-     * @param path path to file which the user would like to store information from <code>taskList</code>
-     * @throws LoadException if the file cannot be read and or written to
+     * @param path the specified path
+     * @throws LoadException if the file cannot be read/written to
      */
     Storage(String path) throws LoadException {
         this.path = path;
@@ -41,6 +41,7 @@ class Storage {
 
     /**
      * Creates a new file at <code>path</code>.
+     *
      * @param path path where new file will be located relative to main app's working directory
      */
     private void createFile(String path) throws LoadException {
@@ -58,9 +59,9 @@ class Storage {
     }
 
     /**
-     * Returns a <code>Stream</code> of strings. Each string represents a summarised version of a <code>task</code>.
+     * Returns a <code>Stream</code> of strings. Each string represents a summarised version of an input.
      *
-     * @return strings of summarised version of all tasks
+     * @return strings of summarised version of all inputs
      */
     Stream<String> load() {
         try {
@@ -71,9 +72,9 @@ class Storage {
     }
 
     /**
-     * Adds <code>task</code> to file found at <code>this</code> path.
+     * Adds input to file found at <code>this</code> path.
      *
-     * @param input task to be added to file
+     * @param input input to be added to file
      */
     void add(Input input) {
         try {
@@ -86,9 +87,9 @@ class Storage {
     }
 
     /**
-     * Rewrites the entire file to save updates made to <code>taskList</code>.
+     * Rewrites the entire file to save updates made to <code>Manager</code>.
      *
-     * @param inputs summarised string representation of all tasks found in <code>taskList</code>
+     * @param inputs summarised string representation of all inputs found in <code>manager</code>
      */
     void update(Stream<? extends Input> inputs) {
         try {

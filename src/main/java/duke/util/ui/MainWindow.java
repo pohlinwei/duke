@@ -39,6 +39,10 @@ public class MainWindow extends AnchorPane {
         scrollPane.setFitToWidth(true);
     }
 
+    /**
+     * Sets duke.
+     * @param d duke to be used
+     */
     public void setDuke(Duke d) {
         duke = d;
     }
@@ -64,6 +68,9 @@ public class MainWindow extends AnchorPane {
         }
     }
 
+    /**
+     * Greets user when s/he first logs in.
+     */
     @FXML
     public void greetUser() {
         dialogContainer.getChildren().addAll(
@@ -71,6 +78,9 @@ public class MainWindow extends AnchorPane {
         );
     }
 
+    /**
+     * Inform user that previous tasks cannot be loaded and new tasks will not be saved locally.
+     */
     @FXML
     public void informStorageCapabilities() {
         if (!duke.hasTaskStorage()) {
@@ -81,6 +91,9 @@ public class MainWindow extends AnchorPane {
         }
     }
 
+    /**
+     * Prevents user from entering further input.
+     */
     @FXML
     public void disableInput() {
         userInput.setDisable(true);
