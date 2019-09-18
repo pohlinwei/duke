@@ -220,7 +220,7 @@ Example of usage:
 
 Expected outcome:
 
-`outcome`
+![Image of new outcome](screenshots/new.png)
 
 ### `ask` - retrieves a question
 
@@ -237,7 +237,7 @@ Example of usage:
 
 Expected outcome:
 
-`outcome`
+![Image of ask outcome](screenshots/ask.png)
 
 ### `answer` - answer a question
 
@@ -255,7 +255,7 @@ Example of usage:
 
 Expected outcome:
 
-`outcome`
+![Image of answer outcome](screenshots/answer.png)
 
 ### `check` - checks the answer to a specified question
 
@@ -272,7 +272,7 @@ Example of usage:
 
 Expected outcome:
 
-`outcome`
+![Image of check outcome](screenshots/check.png)
 
 ### `show` - shows all questions and their corresponding answers
 
@@ -289,7 +289,7 @@ Example of usage:
 
 Expected outcome:
 
-`outcome`
+![Image of show outcome](screenshots/show.png)
 
 ### `remove` - removes a specified question and answer
 
@@ -306,7 +306,7 @@ Example of usage:
 
 Expected outcome:
 
-`outcome`
+![Image of remove outcome](screenshots/remove.png)
 
 ### `bye` - closes the application
 
@@ -320,7 +320,7 @@ bye
 
 Expected outcome:
 
-`outcome`
+![Image of bye outcome](screenshots/bye.png)
 
 ## Glossary
 This section explains the command terms used.
