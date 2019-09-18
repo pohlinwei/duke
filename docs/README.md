@@ -264,5 +264,5 @@ This section explains the command terms used.
 #### task
 This refers to any to-do, deadline or event items.
 
-### local(ly)
+#### local(ly)
 This refers to files that are stored on your PC or Mac. 
