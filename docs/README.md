@@ -297,7 +297,7 @@ remove index
 
 Example of usage: 
 
-`keyword (optional arguments)`
+`remove 1`
 
 Expected outcome:
 
