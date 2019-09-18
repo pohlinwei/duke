@@ -13,13 +13,25 @@ Duke is a not only your task manager but also your study companion.
 
 ### Feature 4: Mark task as complete
 
-### Feature 5: List tasks
+### Feature 5: Find a task
 
-### Feature 6: Delete a task
+### Feature 6: List tasks
 
-### Feature 7: Find a task
+### Feature 7: Delete a task
 
 ### Feature 8: Store tasks in a specified file
+
+### Feature 9: Add a question with its accompanying answer
+
+### Feature 10: Quiz yourself
+
+### Feature 11: Find the answer to a specified question
+
+### Feature 12: Show all questions and answers
+
+### Feature 13: Remove a question and its accompanying answer
+
+### Feature 14: Close application without a mouse
 
 ## Usage
 
