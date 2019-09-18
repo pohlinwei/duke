@@ -50,6 +50,43 @@ Close Duke with a simple command: no mouse is needed for this action!
 
 ## Usage
 
+### `todo` - adds a to-do 
+
+Adds a to-do task. 
+
+Example of usage: 
+
+`todo read the elegant universe`
+
+Expected outcome:
+
+`outcome`
+
+### `deadline` - adds a deadline
+
+Adds a task which has to be completed by a specified date and time.
+
+Example of usage: 
+
+`deadline complete week 6 iP /by 19/9 1900`
+
+Expected outcome:
+
+`outcome`
+
+### `event` - adds an event
+
+Adds an event (task) that is happening on a specified date, and has a start and end time.
+
+Example of usage: 
+
+`event family dinner /at 20/9 1830-2000`
+
+Expected outcome:
+
+`outcome`
+
+
 ### `Keyword` - Describe action
 
 Describe action and its outcome.
@@ -61,3 +98,4 @@ Example of usage:
 Expected outcome:
 
 `outcome`
+
