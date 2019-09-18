@@ -76,7 +76,7 @@ Adds a task which has to be completed by a specified date and time.
 
 Command:
 
-```html
+```
 deadline <task to do> /by <day/Month> <time>
 ```
 where `day` and `month` are specified using numbers, and `time` is the specified time in 24 hours format.
@@ -98,7 +98,7 @@ Adds an event (task) that is happening on a specified date, and has a start and 
 
 Command:
 
-```html
+```
 event <task to do or event> /at <day/Month> <start time>-<end time>
 ```
 where `day` and `month` are specified using numbers, and `start time` and `end time` are specified in 24 hours format.
@@ -121,7 +121,7 @@ Expected outcome:
 Marks your `index`th task in the task manager as done.
 
 Command:
-```html
+```
 done <index>
 ```
 
@@ -138,7 +138,7 @@ Expected outcome:
 Finds and returns any tasks which contain `expression`. The search process is not case-sensitive.
 
 Command:
-```html
+```
 find <expression>
 ```
 
@@ -155,7 +155,7 @@ Expected outcome:
 Shows all tasks in your task manager.
 
 Command:
-```html
+```
 list
 ```
 
@@ -172,7 +172,7 @@ Expected outcome:
 Deletes your `index`th task.
 
 Command:
-```html
+```
 delete <index>
 ```
 
@@ -189,7 +189,7 @@ Expected outcome:
 Uses the `specified file` for storing your tasks locally, i.e. tasks will not be stored in the default file. In addition, all tasks from the default file will no longer be accessible by Duke. However, when the command is run, Duke will load any of your tasks that are found in the `specified file`.
 
 Command:
-```html
+```
 store <specified file>
 ```
 
@@ -206,7 +206,7 @@ Expected outcome:
 Adds a new `question` and `answer`. In the future, you may refer to it.
 
 Command:
-```html
+```
 new <question> /ans <answer>
 ```
 
@@ -223,7 +223,7 @@ Expected outcome:
 Retrieves a question which you are expected to answer. It is great if you get it right but it is okay to make mistakes! We are all here to learn (:
 
 Command:
-```html
+```
 ask
 ```
 
@@ -241,7 +241,7 @@ To answer a question Duke has retrieved, please use this command. Note that the 
 (Refer to the command before this to find out how to get Duke to ask you a question) 
 
 Command:
-```html
+```
 answer <your answer>
 ```
 
@@ -258,7 +258,7 @@ Expected outcome:
 Checks the answer to your `question`.
 
 Command:
-```html
+```
 check <question>
 ```
 
@@ -275,7 +275,7 @@ Expected outcome:
 Shows all your questions and answers.
 
 Command:
-```html
+```
 show
 ```
 
@@ -292,7 +292,7 @@ Expected outcome:
 Removes your `index`th question and answer.
 
 Command:
-```html
+```
 remove <index>
 ```
 
@@ -310,7 +310,7 @@ Closes the application and the application's window for you.
 
 Command: 
 
-```html
+```
 bye
 ```
 
