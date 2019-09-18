@@ -80,7 +80,8 @@ deadline [task to do] /by [day/Month] [time]
 ```
 where `day` and `month` are specified using numbers, and `time` is the specified time in 24 hours format.
 
-:warning: please represent `time` with four digits, with the first 2 specifying the hours and the latter 2 specifying the minutes of the day (prepend zeros whenever necessary)
+**Note:**
+Please represent `time` with four digits, with the first 2 specifying the hours and the latter 2 specifying the minutes of the day (prepend zeros whenever necessary)
 
 Example of usage: 
 
@@ -100,6 +101,10 @@ Command:
 event [task to do or event] /at [day/Month] [start time]-[end time]
 ```
 where `day` and `month` are specified using numbers, and `start time` and `end time` are specified in 24 hours format.
+
+**Note:**
+Please represent `start time` and `end time` with four digits, with the first 2 specifying the hours and the latter 2 specifying the minutes of the day (prepend zeros whenever necessary)
+
 
 Example of usage: 
 
