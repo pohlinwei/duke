@@ -67,7 +67,7 @@ Example of usage:
 
 Expected outcome:
 
-`outcome`
+![Image of todo outcome](screenshots/todo.png)
 
 ### `deadline` - adds a deadline
 
