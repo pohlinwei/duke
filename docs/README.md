@@ -251,7 +251,7 @@ answer <your answer>
 
 Example of usage: 
 
-`answer asia`
+`answer South east Asia`
 
 Expected outcome:
 
