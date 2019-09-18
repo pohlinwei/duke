@@ -115,6 +115,125 @@ Expected outcome:
 `outcome`
 
 
+### `done` - marks a task as done
+
+Marks your `index`th task in the task manager as done.
+
+Command:
+```bash
+done [index]
+```
+
+Example of usage: 
+
+`done 1`
+
+Expected outcome:
+
+`outcome`
+
+### `find` - finds tasks 
+
+Finds and returns any tasks which contain `expression`. The search process is not case-sensitive.
+
+Command:
+```bash
+find [expression]
+```
+
+Example of usage: 
+
+`find ip`
+
+Expected outcome:
+
+`outcome`
+
+### `list` - shows all tasks
+
+Shows all tasks in your task manager.
+
+Command:
+```bash
+list
+```
+
+Example of usage: 
+
+`list`
+
+Expected outcome:
+
+`outcome`
+
+### `delete` - deletes a task
+
+Deletes your `index`th task.
+
+Command:
+```bash
+delete [index]
+```
+
+Example of usage: 
+
+`delete 1`
+
+Expected outcome:
+
+`outcome`
+
+### `store` - changes the file that is used to store your tasks locally
+
+Uses the `specified file` for storing your tasks locally, i.e. tasks will not be stored in the default file. In addition, all tasks from the default file will no longer be accessible by Duke. However, when the command is run, Duke will load any of your tasks that are found in the `specified file`.
+
+Command:
+```bash
+store [specified file]
+```
+
+Example of usage: 
+
+`store taskData.txt`
+
+Expected outcome:
+
+`outcome`
+
+### `new` - adds a question with its accompanying answer
+
+Adds a new `question` and `answer`. In the future, you may refer to it.
+
+Command:
+```bash
+new [question] /ans [answer]
+```
+
+Example of usage: 
+
+`new where is Singapore? /ans South East Asia`
+
+Expected outcome:
+
+`outcome`
+
+### `ask` - retrieves a question
+
+Retrieves a question which you are expected to answer. It is great if you get it right but it is okay to make mistakes! We are all here to learn (:
+
+Command:
+```bash
+ask
+```
+
+Example of usage: 
+
+`ask`
+
+Expected outcome:
+
+`outcome`
+
 ### `Keyword` - Describe action
 
 Describe action and its outcome.
@@ -127,3 +246,23 @@ Expected outcome:
 
 `outcome`
 
+### `Keyword` - Describe action
+
+Describe action and its outcome.
+
+Example of usage: 
+
+`keyword (optional arguments)`
+
+Expected outcome:
+
+`outcome`
+
+## Glossary
+This section explains the command terms used.
+
+#### task
+This refers to any to-do, deadline or event items.
+
+### local(ly)
+This refers to files that are stored on your PC or Mac. 
