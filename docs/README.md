@@ -292,7 +292,7 @@ Removes your `index`th question and answer.
 
 Command:
 ```bash
-remove index
+remove <index>
 ```
 
 Example of usage: 
