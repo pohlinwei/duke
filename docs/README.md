@@ -54,6 +54,12 @@ Close Duke with a simple command: no mouse is needed for this action!
 
 Adds a to-do task. 
 
+Command:
+
+```bash
+todo [task to do]
+```
+
 Example of usage: 
 
 `todo read the elegant universe`
@@ -66,6 +72,16 @@ Expected outcome:
 
 Adds a task which has to be completed by a specified date and time.
 
+
+Command:
+
+```bash
+deadline [task to do] /by [day/Month] [time]
+```
+where `day` and `month` are specified using numbers, and `time` is the specified time in 24 hours format.
+
+:warning: please represent `time` with four digits, with the first 2 specifying the hours and the latter 2 specifying the minutes of the day (prepend zeros whenever necessary)
+
 Example of usage: 
 
 `deadline complete week 6 iP /by 19/9 1900`
@@ -77,6 +93,13 @@ Expected outcome:
 ### `event` - adds an event
 
 Adds an event (task) that is happening on a specified date, and has a start and end time.
+
+Command:
+
+```bash
+event [task to do or event] /at [day/Month] [start time]-[end time]
+```
+where `day` and `month` are specified using numbers, and `start time` and `end time` are specified in 24 hours format.
 
 Example of usage: 
 
