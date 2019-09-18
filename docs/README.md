@@ -36,7 +36,7 @@ Add a new question and answer. Then, quiz yourself or review it later!
 ### Feature 10: Quiz yourself
 Test yourself by asking Duke to select a random question from your question bank! Do note that you must attempt to answer the question. If otherwise, Duke will be unhappy and you won't be able to access any question-and-answer features until you provide an answer.
 
-### Feature 11: Find the answer to a specified question
+### Feature 11: Check the answer of a specified question
 With this feature, you can easily get an answer to a question from your question bank easily! Just type your question and Duke will fetch the answer for you.
 
 ### Feature 12: Show all questions and answers
@@ -234,9 +234,66 @@ Expected outcome:
 
 `outcome`
 
-### `Keyword` - Describe action
+### `answer` - answer a question
 
-Describe action and its outcome.
+To answer a question Duke has retrieved, please use this command. Note that the check is not case-sensitive.
+(Refer to the command before this to find out how to get Duke to ask you a question) 
+
+Command:
+```bash
+answer [your answer]
+```
+
+Example of usage: 
+
+`answer asia`
+
+Expected outcome:
+
+`outcome`
+
+### `check` - checks the answer to a specified question
+
+Checks the answer to your `question`.
+
+Command:
+```bash
+check [question]
+```
+
+Example of usage: 
+
+`check where is singapore?`
+
+Expected outcome:
+
+`outcome`
+
+### `show` - shows all questions and their corresponding answers
+
+Shows all your questions and answers.
+
+Command:
+```bash
+show
+```
+
+Example of usage: 
+
+`show`
+
+Expected outcome:
+
+`outcome`
+
+### `remove` - removes a specified question and answer
+
+Removes your `index`th question and answer.
+
+Command:
+```bash
+remove index
+```
 
 Example of usage: 
 
@@ -246,13 +303,15 @@ Expected outcome:
 
 `outcome`
 
-### `Keyword` - Describe action
+### `bye` - closes the application
 
-Describe action and its outcome.
+Closes the application and the application's window for you.
 
-Example of usage: 
+Command: 
 
-`keyword (optional arguments)`
+```bash
+bye
+```
 
 Expected outcome:
 
