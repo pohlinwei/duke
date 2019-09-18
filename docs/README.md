@@ -57,7 +57,7 @@ Adds a to-do task.
 Command:
 
 ```bash
-todo [task to do]
+todo <task to do>
 ```
 
 Example of usage: 
@@ -76,7 +76,7 @@ Adds a task which has to be completed by a specified date and time.
 Command:
 
 ```bash
-deadline [task to do] /by [day/Month] [time]
+deadline <task to do> /by <day/Month> <time>
 ```
 where `day` and `month` are specified using numbers, and `time` is the specified time in 24 hours format.
 
@@ -98,7 +98,7 @@ Adds an event (task) that is happening on a specified date, and has a start and 
 Command:
 
 ```bash
-event [task to do or event] /at [day/Month] [start time]-[end time]
+event <task to do or event> /at <day/Month> <start time>-<end time>
 ```
 where `day` and `month` are specified using numbers, and `start time` and `end time` are specified in 24 hours format.
 
@@ -121,7 +121,7 @@ Marks your `index`th task in the task manager as done.
 
 Command:
 ```bash
-done [index]
+done <index>
 ```
 
 Example of usage: 
@@ -138,7 +138,7 @@ Finds and returns any tasks which contain `expression`. The search process is no
 
 Command:
 ```bash
-find [expression]
+find <expression>
 ```
 
 Example of usage: 
@@ -172,7 +172,7 @@ Deletes your `index`th task.
 
 Command:
 ```bash
-delete [index]
+delete <index>
 ```
 
 Example of usage: 
@@ -206,7 +206,7 @@ Adds a new `question` and `answer`. In the future, you may refer to it.
 
 Command:
 ```bash
-new [question] /ans [answer]
+new <question> /ans <answer>
 ```
 
 Example of usage: 
@@ -241,7 +241,7 @@ To answer a question Duke has retrieved, please use this command. Note that the 
 
 Command:
 ```bash
-answer [your answer]
+answer <your answer>
 ```
 
 Example of usage: 
@@ -258,7 +258,7 @@ Checks the answer to your `question`.
 
 Command:
 ```bash
-check [question]
+check <question>
 ```
 
 Example of usage: 
