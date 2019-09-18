@@ -189,7 +189,7 @@ Uses the `specified file` for storing your tasks locally, i.e. tasks will not be
 
 Command:
 ```bash
-store [specified file]
+store <specified file>
 ```
 
 Example of usage: 
