@@ -90,7 +90,8 @@ Example of usage:
 
 Expected outcome:
 
-`outcome`
+
+![Image of deadline outcome](screenshots/deadline.png)
 
 ### `event` - adds an event
 
@@ -113,7 +114,7 @@ Example of usage:
 
 Expected outcome:
 
-`outcome`
+![Image of event outcome](screenshots/event.png)
 
 
 ### `done` - marks a task as done
@@ -131,7 +132,8 @@ Example of usage:
 
 Expected outcome:
 
-`outcome`
+
+![Image of done outcome](screenshots/done.png)
 
 ### `find` - finds tasks 
 
@@ -148,7 +150,8 @@ Example of usage:
 
 Expected outcome:
 
-`outcome`
+
+![Image of find outcome](screenshots/find.png)
 
 ### `list` - shows all tasks
 
@@ -165,7 +168,8 @@ Example of usage:
 
 Expected outcome:
 
-`outcome`
+
+![Image of list outcome](screenshots/list.png)
 
 ### `delete` - deletes a task
 
@@ -182,7 +186,7 @@ Example of usage:
 
 Expected outcome:
 
-`outcome`
+![Image of delete outcome](screenshots/delete.png)
 
 ### `store` - changes the file that is used to store your tasks locally
 
@@ -195,11 +199,11 @@ store <specified file>
 
 Example of usage: 
 
-`store taskData.txt`
+`store ../data/entries.txt`
 
 Expected outcome:
 
-`outcome`
+![Image of store outcome](screenshots/store.png)
 
 ### `new` - adds a question with its accompanying answer
 
