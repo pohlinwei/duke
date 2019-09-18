@@ -49,6 +49,7 @@ Have you just finished your test? Do you no longer need a pair of question and a
 Close Duke with a simple command: no mouse is needed for this action!
 
 ## Usage
+This section explains the various commands you might need. Examples are also included!
 
 ### `todo` - adds a to-do 
 
