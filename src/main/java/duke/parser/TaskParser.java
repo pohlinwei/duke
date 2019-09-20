@@ -202,14 +202,17 @@ class TaskParser {
         String[] dateTimeArr = dateTimeStr.split(" ");
 
         boolean hasStartEndTime = dateTimeArr.length == 2;
+
         if (!hasStartEndTime) {
             throw new EventParseException("Missing date or time");
         }
 
-        String date = dateTimeArr[0];
-        String[] times = dateTimeArr[1].split(SEPARATOR_TIME);
-
         try {
+            String date = dateTimeArr[0];
+            String[] times = dateTimeArr[1].split(SEPARATOR_TIME);
+            if (times.length != 2) {
+                throw new ParseException("", 0);
+            }
             Calendar startTime = DateFormatter.parseDate(date + " " + times[0]);
             Calendar endTime = DateFormatter.parseDate(date + " " + times[1]);
             return new Event(info, dateTimeStr, startTime, endTime);
