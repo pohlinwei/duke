@@ -19,13 +19,13 @@ import duke.util.Response;
 
 public class Duke {
     // for tasks
-    private static String taskFile = "../data/tasks.txt";
+    private static String taskFile = "data/tasks.txt";
     private TaskManager taskManager = new TaskManager();
     private OptionalStorage taskStorage;
     private boolean hasTaskStorage = true;
 
     // for trivia
-    private static String triviaFile = "../data/trivia.txt";
+    private static String triviaFile = "data/trivia.txt";
     private TriviaManager triviaManager = new TriviaManager();
     private OptionalStorage triviaStorage;
 
